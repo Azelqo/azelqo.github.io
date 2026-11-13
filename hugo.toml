@@ -20,7 +20,6 @@ enableGitInfo = true
   [params.sidebar]
     compact = false
     subtitle = "日々の記録と、好きなこと。"
-    avatar = "img/avatar.jpg"
   [params.article]
     headingAnchor = false
     toc = true
