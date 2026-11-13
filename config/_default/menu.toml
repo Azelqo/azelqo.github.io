@@ -12,7 +12,7 @@
   url = "/categories/勉強モチベーション/"
   weight = 2
   [main.params]
-    icon = "火"
+    icon = "categories"
 
 [[main]]
   identifier = "high-school"
@@ -20,7 +20,7 @@
   url = "/categories/高校特集/"
   weight = 3
   [main.params]
-    icon = "school"
+    icon = "categories"
 
 [[main]]
   identifier = "kosen"
@@ -28,7 +28,7 @@
   url = "/categories/高専特集/"
   weight = 4
   [main.params]
-    icon = "book"
+    icon = "categories"
 
 [[main]]
   identifier = "university"
@@ -36,7 +36,7 @@
   url = "/categories/大学特集/"
   weight = 5
   [main.params]
-    icon = "graduation-cap"
+    icon = "categories"
 
 [[main]]
   identifier = "posts"
