@@ -283,7 +283,6 @@ a { text-underline-offset: .2em; }
   --accent-color-text: #ffffff;
   --az-shadow: 0 12px 34px rgba(0, 0, 0, .075);
 }
-body { color-scheme: light; }
 a { color: inherit; }
 .menu .current a, .menu a.active {
   background: rgba(0,0,0,.075);
@@ -428,4 +427,27 @@ body { font-size: 1rem; line-height: 1.75; }
   .container.extended .right-sidebar {
     max-width: 250px;
   }
+}
+
+
+/* Final polish: metadata clarity, resilient mobile layout and accessible interactions */
+.article-meta .inline-meta { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; }
+.article-time--published { font-variant-numeric: tabular-nums; }
+.article-page .article-header .article-meta { display: flex; flex-wrap: wrap; gap: .6rem 1rem; }
+.article-page .article-header .article-meta .inline-meta { min-width: 0; }
+.article-page .article-lastmod { color: var(--card-text-color-secondary, #777); font-size: .9rem; }
+.article-page .article-content { overflow-wrap: anywhere; }
+.article-content pre { max-width: 100%; overflow-x: auto; }
+.article-content table { max-width: 100%; }
+.article-list article:focus-within { outline: 2px solid currentColor; outline-offset: 4px; }
+button, input, select, textarea { font: inherit; }
+@media (max-width: 640px) {
+  .article-page .article-title { font-size: clamp(1.8rem, 8vw, 2.35rem); }
+  .article-page .article-content { overflow-wrap: break-word; }
+  .article-page .article-header { margin-bottom: 1.5rem; }
+  .article-page .article-meta { row-gap: .4rem; }
+  .article-list article.has-image, .article-list .article.has-image { grid-template-columns: 92px minmax(0, 1fr); }
+}
+@media (hover: none) {
+  .article-list article:hover, .article-list .article:hover { background: transparent !important; }
 }
