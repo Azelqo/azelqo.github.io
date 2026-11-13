@@ -30,6 +30,20 @@ jobs:
       - name: Build
         run: hugo --minify
 
+      - name: Verify generated site
+        run: |
+          test -s public/index.html
+          test -s public/robots.txt
+          test -s public/sitemap.xml
+          test -s public/posts/index.html
+          test -s public/search/index.html
+          grep -q 'lang="ja-JP"' public/index.html
+          grep -q '"@type":"WebSite"' public/index.html
+          for page in public/p/*/index.html; do
+            grep -q '"@type":"BlogPosting"' "$page"
+            grep -q 'alt="[^"]\+"' "$page"
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
