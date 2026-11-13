@@ -377,7 +377,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   .az-article-row { grid-template-columns: 30px minmax(0,1fr); gap: 12px; padding: 21px 0; }
   .az-row-arrow { display: none; }
   .az-archive-card { grid-template-columns: 28px minmax(0,1fr); gap: 12px; }
-  .az-archive-thumb { grid-column: 2; width: min(100%,280px); }
+  .az-archive-thumb { grid-column: 2; width: 100%; max-width: 280px; }
   .az-section-heading { align-items: start; flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
