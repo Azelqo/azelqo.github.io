@@ -1,5 +1,4 @@
 baseURL = "https://azelqo.github.io/"
-languageCode = "ja-JP"
 defaultContentLanguage = "ja"
 locale = "ja-JP"
 hasCJKLanguage = true
