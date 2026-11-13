@@ -1,3 +1,34 @@
 <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 <meta name="theme-color" content="#111111">
 <meta name="color-scheme" content="light dark">
+
+{{- if .IsPage }}
+<script type="application/ld+json">
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" (.Description | default (.Summary | plainify | htmlUnescape | truncate 180))
+  "url" .Permalink
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+  "author" (dict "@type" "Person" "name" "Azelqo")
+  "publisher" (dict "@type" "Organization" "name" "Azelqo" "url" .Site.BaseURL)
+  "inLanguage" "ja-JP"
+-}}
+{{ $schema | jsonify | safeJS }}
+</script>
+{{- else if .IsHome }}
+<script type="application/ld+json">
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "description" .Site.Params.description
+  "inLanguage" "ja-JP"
+-}}
+{{ $schema | jsonify | safeJS }}
+</script>
+{{- end }}
