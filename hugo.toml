@@ -15,6 +15,7 @@ enableGitInfo = true
 [params]
   mainSections = ["posts"]
   rssFullContent = true
+  favicon = "/favicon.svg"
   [params.footer]
     since = 2026
   [params.sidebar]
