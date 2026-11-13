@@ -45,10 +45,24 @@ enableGitInfo = true
     [menu.main.params]
       icon = "tag"
   [[menu.main]]
+    identifier = "search"
+    name = "記事を検索"
+    url = "/search/"
+    weight = 5
+    [menu.main.params]
+      icon = "search"
+  [[menu.main]]
+    identifier = "links"
+    name = "リンク"
+    url = "/links/"
+    weight = 6
+    [menu.main.params]
+      icon = "link"
+  [[menu.main]]
     identifier = "about"
     name = "このブログについて"
     url = "/about/"
-    weight = 5
+    weight = 7
     [menu.main.params]
       icon = "user"
 
