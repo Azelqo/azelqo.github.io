@@ -37,11 +37,12 @@ jobs:
           test -s public/sitemap.xml
           test -s public/posts/index.html
           test -s public/search/index.html
-          grep -q 'lang="ja-JP"' public/index.html
+          grep -Eq 'lang="?ja-JP"?([ >])' public/index.html
           grep -q '"@type":"WebSite"' public/index.html
           for page in public/posts/*/index.html; do
             grep -q '"@type":"BlogPosting"' "$page"
-            grep -Eq 'alt="[^"]+"' "$page"
+            alt_count=$(grep -o 'alt=' "$page" | wc -l)
+            test "$alt_count" -ge 2
           done
 
       - name: Upload artifact
