@@ -4,9 +4,14 @@ date: 2026-11-13T14:00:00+09:00
 description: "模試の成績が下がったとき、落ち込むだけで終わらせない。結果を現実として受け止め、今日から行動を変えるための話。"
 categories: ["勉強への向き合い方"]
 tags: ["受験", "模試", "危機感", "勉強"]
+image: "https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg"
 ---
 
 模試の結果が返ってきた。前より点数が低い。偏差値も下がった。判定を見て、思わず画面を閉じたくなった人もいるかもしれない。
+
+![集中して答案やノートを確認する学習者](https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg)
+
+<small>写真：<a href="https://www.pexels.com/photo/pensive-female-student-writing-notes-while-studying-in-light-room-6237957/" target="_blank" rel="noopener"> Gabby K. / Pexels</a> — 模試の結果を振り返り、復習するイメージ</small>
 
 悔しい。焦る。周りは伸びているように見えるのに、自分だけ置いていかれている気がする。そんな気持ちになるのは自然なことだ。
 
