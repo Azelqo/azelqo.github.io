@@ -32,13 +32,6 @@ enableEmoji = true
     [menu.main.params]
       icon = "archives"
   [[menu.main]]
-    identifier = "categories"
-    name = "カテゴリー"
-    url = "/categories/"
-    weight = 3
-    [menu.main.params]
-      icon = "categories"
-  [[menu.main]]
     identifier = "tags"
     name = "タグ"
     url = "/tags/"
