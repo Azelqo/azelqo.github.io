@@ -18,7 +18,7 @@ enableEmoji = true
 [params]
   mainSections = ["posts"]
   rssFullContent = true
-  favicon = "favicon.svg"
+  favicon = "/favicon.svg"
   description = "勉強法や学習習慣、受験対策、日々の気づきを記録する匿名の個人ブログ。実際に試せる勉強の工夫を、具体例とともに紹介します。"
   image = "/ogp.svg"
   [params.footer]
