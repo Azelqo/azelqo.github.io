@@ -383,3 +383,78 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .az-feature-card { transition: none; }
 }
+
+
+/* AZELQO quality pass: use the OS font stack to avoid remote-font blocking. */
+:root {
+  color-scheme: light;
+  --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+  --base-font-family: Inter, var(--sys-font-family), sans-serif;
+  --article-font-family: "Noto Sans JP", var(--sys-font-family), sans-serif;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+}
+:root[data-scheme="light"] {
+  --body-background: #f7f8fc; --body-text-color: #4b5060;
+  --accent-color: #315cba; --accent-color-darker: #244a9d; --accent-color-text: #fff;
+  --card-background: #fff; --card-background-selected: #edf1fb;
+  --card-text-color-main: #171923; --card-text-color-secondary: #626879;
+  --card-text-color-tertiary: #777e8d; --card-separator-color: rgba(25,29,45,.12);
+  --pre-background-color: #f3f5f9; --pre-text-color: #242938;
+  --code-background-color: rgba(49,92,186,.09); --code-text-color: #294b91;
+  --blockquote-background-color: #f0f3fa; --table-border-color: #d9deea;
+  --tr-even-background-color: #f4f6fa;
+  --az-bg: #f7f8fc; --az-surface: #fff; --az-text: #171923;
+  --az-muted: #626879; --az-line: rgba(25,29,45,.14);
+  --az-accent: #315cba; --az-soft: #e9edfa;
+}
+:root[data-scheme="dark"] {
+  color-scheme: dark;
+  --body-background: #000; --body-text-color: #b5bac7;
+  --accent-color: #b7c7ff; --accent-color-darker: #d5deff; --accent-color-text: #101522;
+  --card-background: #101114; --card-background-selected: #1b1d23;
+  --card-text-color-main: #f1f2f7; --card-text-color-secondary: #b2b7c5;
+  --card-text-color-tertiary: #858c9c; --card-separator-color: rgba(235,239,255,.12);
+  --pre-background-color: #0b0c0f; --pre-text-color: #e8eaf2;
+  --code-background-color: rgba(183,199,255,.13); --code-text-color: #d2dcff;
+  --blockquote-background-color: #101319; --table-border-color: #343844;
+  --tr-even-background-color: #11141a;
+  --az-bg: #000; --az-surface: #101114; --az-text: #f1f2f7;
+  --az-muted: #b2b7c5; --az-line: rgba(235,239,255,.14);
+  --az-accent: #b7c7ff; --az-soft: #1b2232;
+}
+html, body { background: var(--body-background); }
+body { font-family: var(--base-font-family); }
+.article-content { font-family: var(--article-font-family); }
+.article-content img, .article-content video, .article-content iframe { max-width: 100%; }
+.article-content img { height: auto; }
+.article-content pre, .az-code-frame { background: var(--pre-background-color); color: var(--pre-text-color); }
+.az-code-frame { border-color: var(--card-separator-color); }
+.az-code-toolbar { background: var(--card-background); border-color: var(--card-separator-color); }
+.az-code-language, .az-code-copy { color: var(--card-text-color-secondary); }
+.az-callout { background: var(--card-background); border-color: var(--card-separator-color); border-left-width: 4px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.az-callout-body { color: var(--card-text-color-main); }
+.az-callout--tip { border-left-color: #3b9b70; }
+.az-callout--tip .az-callout-label { color: #3b9b70; }
+.az-callout--warning { border-left-color: #d49a36; }
+.az-callout--warning .az-callout-label { color: #d49a36; }
+.az-callout--info { border-left-color: var(--az-accent); }
+.az-code-copy { min-width: 64px; min-height: 40px; touch-action: manipulation; }
+.az-code-copy:focus-visible, .az-feature-card:focus-visible, .az-chip:focus-visible, .az-text-link:focus-visible {
+  outline: 3px solid var(--az-accent); outline-offset: 3px;
+}
+.az-copy-toast {
+  position: fixed; z-index: 9999; inset: auto 16px calc(16px + env(safe-area-inset-bottom)) auto;
+  max-width: min(90vw, 320px); padding: 11px 16px; border: 1px solid var(--card-separator-color);
+  border-radius: 10px; background: var(--card-background); color: var(--card-text-color-main);
+  box-shadow: 0 8px 28px rgba(0,0,0,.22); font-size: 13px; line-height: 1.5;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.az-copy-toast.is-visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 767px) {
+  .az-code-copy { min-height: 44px; min-width: 72px; }
+  .az-code-toolbar { min-height: 44px; height: auto; }
+  .az-code-frame pre { padding-top: 52px !important; }
+}
+@media (prefers-reduced-motion: reduce) { .az-copy-toast { transition: none; } }
