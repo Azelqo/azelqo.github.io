@@ -66,6 +66,8 @@ enableEmoji = true
     compact = false
     subtitle = "学びの記録と、日々の気づき。"
   [params.article]
+    [params.article.list]
+      showTags = false
     headingAnchor = true
     toc = true
     readingTime = true
