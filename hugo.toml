@@ -16,43 +16,6 @@ enableEmoji = true
   post = "/p/:slug/"
   page = "/:slug/"
 
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "ホーム"
-    url = "/"
-    weight = 1
-    [menu.main.params]
-      icon = "home"
-  [[menu.main]]
-    identifier = "about"
-    name = "このブログについて"
-    url = "/about/"
-    weight = 2
-    [menu.main.params]
-      icon = "user"
-  [[menu.main]]
-    identifier = "archives"
-    name = "アーカイブ"
-    url = "/archives/"
-    weight = 3
-    [menu.main.params]
-      icon = "archives"
-  [[menu.main]]
-    identifier = "search"
-    name = "記事を検索"
-    url = "/search/"
-    weight = 4
-    [menu.main.params]
-      icon = "search"
-  [[menu.main]]
-    identifier = "links"
-    name = "リンク"
-    url = "/links/"
-    weight = 5
-    [menu.main.params]
-      icon = "link"
-
 [params]
   mainSections = ["posts"]
   rssFullContent = true
@@ -66,25 +29,25 @@ enableEmoji = true
     compact = false
     subtitle = "学びの記録と、日々の気づき。"
   [params.article]
-    [params.article.list]
-      showTags = false
     headingAnchor = true
     toc = true
     readingTime = true
+    [params.article.list]
+      showTags = false
     [params.article.license]
       enabled = false
   [params.widgets]
     homepage = [
       { type = "search" },
-      { type = "archives", params = { limit = 8 } },
-      { type = "categories", params = { limit = 10 } },
-      { type = "tag-cloud", params = { limit = 18 } },
+      { type = "archives", params = { limit = 6 } },
+      { type = "categories", params = { limit = 8 } },
+      { type = "tag-cloud", params = { limit = 12 } },
     ]
     page = [
       { type = "toc" },
       { type = "archives", params = { limit = 5 } },
       { type = "categories", params = { limit = 8 } },
-      { type = "tag-cloud", params = { limit = 12 } },
+      { type = "tag-cloud", params = { limit = 10 } },
     ]
   [params.colorScheme]
     toggle = true
