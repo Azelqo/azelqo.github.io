@@ -1,11 +1,13 @@
 {
-  "name": "MANABIXX Media",
-  "short_name": "MANABIXX",
-  "description": "勉強のモチベーション、学習法、高校・高専・大学の進路情報を届ける教育メディア。",
+  "name": "Azelqo",
+  "short_name": "Azelqo",
+  "description": "学びの記録と、日々の気づきを綴る個人ブログ。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#111111",
-  "icons": [{"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
 }
