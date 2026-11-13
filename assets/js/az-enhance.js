@@ -43,8 +43,8 @@
       const code = pre.querySelector("code");
       const classes = [code?.className || "", pre.className || "", frame.className || ""].join(" ");
       const lang = code?.dataset.lang || pre.dataset.lang || frame.dataset.lang ||
-        (classes.match(/language-([\\w+#.-]+)/i) || [])[1] ||
-        (classes.match(/lang(?:uage)?-([\\w+#.-]+)/i) || [])[1] || "CODE";
+        (classes.match(/language-([\w+#.-]+)/i) || [])[1] ||
+        (classes.match(/lang(?:uage)?-([\w+#.-]+)/i) || [])[1] || "CODE";
       const toolbar = document.createElement("div");
       toolbar.className = "az-code-toolbar";
       const badge = document.createElement("span");
