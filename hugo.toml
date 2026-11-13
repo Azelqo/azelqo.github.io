@@ -7,23 +7,64 @@ title = "Azelqo"
 theme = "stack"
 enableRobotsTXT = true
 enableGitInfo = true
+
 [pagination]
   pagerSize = 8
+
 [permalinks]
   post = "/p/:slug/"
   page = "/:slug/"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "ホーム"
+    url = "/"
+    weight = 1
+    [menu.main.params]
+      icon = "home"
+  [[menu.main]]
+    identifier = "archives"
+    name = "アーカイブ"
+    url = "/archives/"
+    weight = 2
+    [menu.main.params]
+      icon = "archives"
+  [[menu.main]]
+    identifier = "categories"
+    name = "カテゴリー"
+    url = "/categories/"
+    weight = 3
+    [menu.main.params]
+      icon = "categories"
+  [[menu.main]]
+    identifier = "tags"
+    name = "タグ"
+    url = "/tags/"
+    weight = 4
+    [menu.main.params]
+      icon = "tag"
+  [[menu.main]]
+    identifier = "about"
+    name = "このブログについて"
+    url = "/about/"
+    weight = 5
+    [menu.main.params]
+      icon = "user"
+
 [params]
   mainSections = ["posts"]
   rssFullContent = true
-  favicon = "/favicon.svg"
+  favicon = "img/favicon.svg"
+  description = "学び方、勉強の工夫、日々の気づきを記録する個人ブログ。"
   [params.footer]
     since = 2026
   [params.sidebar]
     avatar = "img/avatar.jpg"
     compact = false
-    subtitle = "日々の記録と、好きなこと。"
+    subtitle = "学びの記録と、日々の気づき。"
   [params.article]
-    headingAnchor = false
+    headingAnchor = true
     toc = true
     readingTime = true
     [params.article.license]
@@ -31,16 +72,22 @@ enableGitInfo = true
   [params.widgets]
     homepage = [
       { type = "search" },
+      { type = "archives", params = { limit = 8 } },
+      { type = "categories", params = { limit = 10 } },
+      { type = "tag-cloud", params = { limit = 18 } },
+    ]
+    page = [
+      { type = "toc" },
       { type = "archives", params = { limit = 5 } },
       { type = "categories", params = { limit = 8 } },
       { type = "tag-cloud", params = { limit = 12 } },
     ]
-    page = [{ type = "toc" }]
   [params.colorScheme]
     toggle = true
     default = "auto"
   [params.comments]
     enabled = false
+
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
