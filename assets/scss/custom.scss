@@ -406,3 +406,26 @@ body { font-size: 1rem; line-height: 1.75; }
   .article-list article.has-image .article-title, .article-list .article.has-image .article-title { font-size: 1.12rem; }
   .article-list .article-subtitle { display: block; }
 }
+
+
+/* Balanced three-column layout: keep the right widgets compact like the reference blog */
+.container.extended {
+  --right-sidebar-max-width: 22% !important;
+}
+.container.extended .right-sidebar {
+  max-width: min(var(--right-sidebar-max-width), 280px);
+  flex-shrink: 0;
+}
+@media (min-width: 1280px) {
+  .container.extended {
+    --right-sidebar-max-width: 20% !important;
+  }
+  .container.extended .right-sidebar {
+    max-width: 280px;
+  }
+}
+@media (max-width: 1199px) {
+  .container.extended .right-sidebar {
+    max-width: 250px;
+  }
+}
