@@ -3,8 +3,9 @@
   "short_name": "Azelqo",
   "description": "学びの記録と、日々の気づき。",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#111111",
   "theme_color": "#111111",
   "icons": [
     {
