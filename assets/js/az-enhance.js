@@ -149,7 +149,7 @@
       catch (_) { return null; }
     }).filter(Boolean);
     if (headings.length && "IntersectionObserver" in window) {
-      const byId = new Map(tocLinks.map((link) => [link.hash.slice(1), link]));
+      const byId = new Map(tocLinks.map((link) => { try { return [decodeURIComponent(link.hash.slice(1)), link]; } catch (_) { return [link.hash.slice(1), link]; } }));
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
