@@ -49,7 +49,7 @@ for path in pages:
         continue
     parsed[rel] = p
     if not p.title: errors.append(f"Missing title: {rel}")
-    if rel.startswith("posts/") and rel.endswith("/index.html"):
+    if rel.startswith("posts/") and rel.endswith("/index.html") and rel != "posts/index.html" and not rel.startswith("posts/page/"):
         if not p.description: errors.append(f"Missing meta description: {rel}")
         if not p.blogposting: errors.append(f"Missing BlogPosting JSON-LD: {rel}")
     if p.images_without_alt: warnings.append(f"{rel}: {p.images_without_alt} image(s) missing alt")
