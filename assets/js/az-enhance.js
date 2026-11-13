@@ -107,4 +107,64 @@
   } else {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
+
+  // Article reading progress + active table-of-contents state.
+  const article = document.querySelector("article.main-article");
+  const articleBody = article?.querySelector(".article-content");
+  if (article && articleBody) {
+    const progress = document.createElement("div");
+    progress.className = "az-reading-progress";
+    progress.setAttribute("role", "progressbar");
+    progress.setAttribute("aria-label", "記事の読了進捗");
+    progress.setAttribute("aria-valuemin", "0");
+    progress.setAttribute("aria-valuemax", "100");
+    progress.setAttribute("aria-valuenow", "0");
+    const fill = document.createElement("span");
+    progress.appendChild(fill);
+    document.body.appendChild(progress);
+
+    let ticking = false;
+    const updateProgress = () => {
+      const rect = articleBody.getBoundingClientRect();
+      const total = articleBody.offsetHeight - window.innerHeight;
+      const travelled = Math.max(0, -rect.top);
+      const value = total <= 0 ? 100 : Math.min(100, Math.max(0, (travelled / total) * 100));
+      fill.style.transform = `scaleX(${value / 100})`;
+      progress.setAttribute("aria-valuenow", String(Math.round(value)));
+      ticking = false;
+    };
+    const requestProgress = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateProgress);
+      }
+    };
+    window.addEventListener("scroll", requestProgress, { passive: true });
+    window.addEventListener("resize", requestProgress, { passive: true });
+    updateProgress();
+
+    const tocLinks = [...document.querySelectorAll(".article-toc .toc-nav a, .widget--toc .toc-nav a")];
+    const headings = tocLinks.map((link) => {
+      try { return document.getElementById(decodeURIComponent(link.hash.slice(1))); }
+      catch (_) { return null; }
+    }).filter(Boolean);
+    if (headings.length && "IntersectionObserver" in window) {
+      const byId = new Map(tocLinks.map((link) => [link.hash.slice(1), link]));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          tocLinks.forEach((link) => {
+            link.classList.remove("is-current");
+            link.removeAttribute("aria-current");
+          });
+          const active = byId.get(entry.target.id);
+          if (active) {
+            active.classList.add("is-current");
+            active.setAttribute("aria-current", "location");
+          }
+        });
+      }, { rootMargin: "-12% 0px -72% 0px", threshold: 0 });
+      headings.forEach((heading) => observer.observe(heading));
+    }
+  }
 })();
