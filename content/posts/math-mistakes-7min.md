@@ -5,11 +5,10 @@ description: "数学の解き直しを得点につなげるため、ミスの原
 categories: ["数学"]
 tags: ["数学", "問題集", "テスト対策"]
 image: "https://images.pexels.com/photos/6958541/pexels-photo-6958541.jpeg?cs=srgb&dl=pexels-karola-g-6958541.jpg&fm=jpg"
+imageAlt: "数学の問題集とノートを使って学習する様子"
 ---
 
 数学の問題を間違えたとき、解説を読んで赤ペンで答えを書き写し、そのまま次の問題へ進んでいないだろうか。解説を読んだ直後は理解できたように感じても、数日後に同じ問題を解くとまた間違えることがある。
-
-![数学の問題集とノートを使って学習する様子](https://images.pexels.com/photos/6958541/pexels-photo-6958541.jpeg?cs=srgb&dl=pexels-karola-g-6958541.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/close-up-of-person-sitting-at-desk-studying-with-textbooks-6958541/" target="_blank" rel="noopener"> Karola G / Pexels</a> — 数学の解き直しに取り組む学習風景</small>
 

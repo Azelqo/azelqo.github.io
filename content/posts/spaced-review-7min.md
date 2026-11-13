@@ -5,11 +5,10 @@ description: "覚えた内容を忘れにくくするため、復習の間隔を
 categories: ["勉強法"]
 tags: ["復習", "暗記", "学習習慣"]
 image: "https://images.pexels.com/photos/6929272/pexels-photo-6929272.jpeg?cs=srgb&dl=pexels-polina-tankilevitch-6929272.jpg&fm=jpg"
+imageAlt: "机でノートを確認しながら復習する様子"
 ---
 
 昨日覚えた英単語を、今日もう一度見たら思い出せた。でも一週間後には意味が出てこない。そんな経験は多いと思う。覚えた内容を一度で長期間保存するのは難しい。だから、最初から「忘れること」を想定して復習の予定を組むとよい。
-
-![机でノートを確認しながら復習する様子](https://images.pexels.com/photos/6929272/pexels-photo-6929272.jpeg?cs=srgb&dl=pexels-polina-tankilevitch-6929272.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/student-doing-her-homework-6929272/" target="_blank" rel="noopener"> Polina Tankilevitch / Pexels</a> — 時間を空けて復習する学習風景</small>
 
