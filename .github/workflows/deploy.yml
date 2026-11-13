@@ -28,7 +28,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: hugo --minify --printPathWarnings
 
       - name: Verify generated site
         run: |
@@ -39,11 +39,7 @@ jobs:
           test -s public/search/index.html
           grep -Eq 'lang="?ja-JP"?([ >])' public/index.html
           grep -q '"@type":"WebSite"' public/index.html
-          for page in public/posts/*/index.html; do
-            grep -q '"@type":"BlogPosting"' "$page"
-            alt_count=$(grep -o 'alt=' "$page" | wc -l)
-            test "$alt_count" -ge 2
-          done
+          python3 scripts/check_site.py public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
