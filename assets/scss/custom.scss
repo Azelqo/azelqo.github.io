@@ -1,10 +1,14 @@
 /* Azelqo — restrained customization on top of the original Hugo Stack layout.
-   The article feed, card structure, and three-column order remain native Stack. */
+   Keep Stack's native article feed and three-column structure. */
 :root {
   --accent-color: #222222;
   --accent-color-darker: #000000;
   --accent-color-text: #ffffff;
   --az-radius: 12px;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 body {
   font-family: Inter, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
@@ -13,6 +17,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { text-underline-offset: .2em; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
 ::selection { background: rgba(0,0,0,.14); }
 
 /* Reference-demo proportions: narrow sidebars, generous central reading area. */
@@ -73,9 +81,8 @@ a { text-underline-offset: .2em; }
   .container.extended > .right-sidebar { display: none !important; }
 }
 
-/* Sidebar details: compact and calm, like the official demo. */
-.left-sidebar { position: sticky; top: 24px; }
-.right-sidebar { position: sticky; top: 24px; }
+/* Sidebar details: compact and calm, like the official Stack demo. */
+.left-sidebar, .right-sidebar { position: sticky; top: 24px; }
 .sidebar .site-avatar img { border-radius: 50%; }
 .site-name a { font-weight: 750; letter-spacing: -.035em; }
 .site-description { line-height: 1.65; font-size: .9rem; }
@@ -99,27 +106,50 @@ a { text-underline-offset: .2em; }
 }
 .widget-title { font-size: .95rem; font-weight: 750; margin-bottom: 10px; }
 .widget a, .widget li { font-size: .86rem; line-height: 1.6; }
+.right-sidebar { gap: 16px; }
 
-/* Keep Stack's native vertical article cards: cover image, title, summary, metadata.
-   Do not turn them into horizontal mini-cards or divider-only rows. */
+/* Native vertical article cards: large cover, readable title, clear metadata. */
 .article-list { gap: 24px; }
 .article-list article {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid rgba(128,128,128,.14);
   box-shadow: 0 3px 14px rgba(0,0,0,.035);
-  transition: box-shadow .2s ease;
+  transition: box-shadow .2s ease, border-color .2s ease;
 }
-.article-list article:hover { transform: none; box-shadow: 0 8px 24px rgba(0,0,0,.075); }
+.article-list article:hover {
+  transform: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,.075);
+  border-color: rgba(128,128,128,.28);
+}
+.article-list article:focus-within {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.article-list .article-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgba(128,128,128,.08);
+}
 .article-list .article-image img {
   display: block;
   width: 100%;
-  max-height: 280px;
+  height: 100%;
+  max-height: none;
   object-fit: cover;
+  transition: transform .35s ease;
 }
-.article-list .article-details { padding: 22px 24px; gap: 12px; }
+.article-list article:hover .article-image img { transform: scale(1.015); }
+.article-list .article-details {
+  min-width: 0;
+  padding: 22px 24px;
+  gap: 12px;
+}
 .article-list .article-category a,
 .article-list .article-tags a {
   font-size: .78rem;
@@ -131,18 +161,37 @@ a { text-underline-offset: .2em; }
   line-height: 1.5;
   font-weight: 700;
   letter-spacing: -.025em;
+  overflow-wrap: anywhere;
 }
 .article-list .article-subtitle {
   font-size: .92rem;
   line-height: 1.8;
   color: var(--card-text-color-secondary);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
 }
 .article-list .article-meta,
 .article-list .article-meta time,
 .article-list .article-meta a {
   font-size: .78rem;
 }
-.article-content { font-size: 1rem; line-height: 1.95; }
+.article-list .article-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .35rem .7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Long-form reading: comfortable Japanese line length and consistent hierarchy. */
+.article-content {
+  font-size: 1rem;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
 .article-content p { margin-block: 1.25em; }
 .article-content h2 {
   margin-top: 2.4em;
@@ -150,26 +199,64 @@ a { text-underline-offset: .2em; }
   border-left: 3px solid currentColor;
   font-size: 1.45rem;
   line-height: 1.5;
+  scroll-margin-top: 5rem;
 }
-.article-content h3 { margin-top: 1.9em; font-size: 1.2rem; }
+.article-content h3 {
+  margin-top: 1.9em;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  scroll-margin-top: 5rem;
+}
 .article-content img { border-radius: 10px; }
-.article-content table { display: block; overflow-x: auto; }
+.article-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.article-content pre { max-width: 100%; overflow-x: auto; }
+.article-content blockquote {
+  border-radius: 0 9px 9px 0;
+  padding: .8em 1.1em;
+  background: rgba(128,128,128,.07);
+}
+.article-content :not(pre) > code {
+  border-radius: 5px;
+  padding: .12em .35em;
+}
 .article-page .article-title {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .article-page .article-content { max-width: 780px; margin-inline: auto; }
+.article-page .article-header { margin-bottom: 1.8rem; }
+.article-page .article-meta { display: flex; flex-wrap: wrap; gap: .4rem .8rem; }
 .pagination a, .pagination button { border-radius: 8px; }
 
+/* Search and form controls should remain easy to use on touch screens. */
+.search-form input, input, textarea, select {
+  font: inherit;
+  max-width: 100%;
+}
+.search-form input { min-height: 42px; border-radius: 9px; }
+
+/* Small screens: remove excess padding without shrinking tap targets. */
 @media (max-width: 767px) {
   .article-list { gap: 16px; }
   .article-list .article-details { padding: 17px; }
   .article-list .article-title { font-size: 1.12rem; }
   .article-list .article-subtitle { font-size: .86rem; }
-  .article-list .article-image img { max-height: 210px; }
+  .article-list .article-image { aspect-ratio: 16 / 9; }
   .article-content { font-size: .98rem; line-height: 1.85; }
   .article-page .article-title { font-size: 1.7rem; }
+  .article-page .article-content { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: .01ms !important; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
