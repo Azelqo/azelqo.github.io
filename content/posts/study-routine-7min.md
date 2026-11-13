@@ -5,11 +5,10 @@ description: "計画倒れを減らすために、勉強時間ではなく具体
 categories: ["勉強法"]
 tags: ["勉強計画", "学習習慣", "時間管理"]
 image: "https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg"
+imageAlt: "教材とノートを広げて学習計画を進める机"
 ---
 
 勉強計画を立てるとき、「今日は三時間勉強する」「英語を一時間やる」と決めていないだろうか。時間を決めること自体は悪くない。ただ、それだけでは何をどこまで進めれば終わりなのかが曖昧になりやすい。机に向かっている時間は長いのに、振り返るとあまり進んでいない。そんな日が続くなら、計画の作り方を少し変えてみる価値がある。
-
-![教材とノートを広げて学習計画を進める机](https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/young-man-reading-a-book-and-studying-6958537/" target="_blank" rel="noopener"> Karola G / Pexels</a> — 毎日の勉強計画を立てるための学習机</small>
 
