@@ -21,13 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Hugo theme
-        run: |
-          mkdir -p themes
-          curl -L https://github.com/g1eny0ung/hugo-theme-dream/archive/refs/heads/master.tar.gz -o /tmp/dream.tar.gz
-          tar -xzf /tmp/dream.tar.gz -C /tmp
-          mv /tmp/hugo-theme-dream-master themes/dream
-
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
