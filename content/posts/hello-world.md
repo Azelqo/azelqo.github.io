@@ -9,14 +9,14 @@ categories:
 tags:
   - ブログ
 draft: false
-image: "https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg"
+image: "https://images.pexels.com/photos/8618029/pexels-photo-8618029.jpeg?cs=srgb&dl=pexels-yankrukov-8618029.jpg&fm=jpg"
 ---
 
 こんにちは。Azelqoです。
 
-![本とノートを広げた勉強机](https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg)
+![本とノートを広げた勉強机](https://images.pexels.com/photos/8618029/pexels-photo-8618029.jpeg?cs=srgb&dl=pexels-yankrukov-8618029.jpg&fm=jpg)
 
-<small>写真：<a href="https://www.pexels.com/photo/young-man-reading-a-book-and-studying-6958537/" target="_blank" rel="noopener"> Karola G / Pexels</a> — Azelqoブログの学習テーマを表す写真</small>
+<small>写真：<a href="https://www.pexels.com/photo/student-reading-book-8618029/" target="_blank" rel="noopener"> Yan Krukau / Pexels</a> — Azelqoブログの学習テーマを表す写真</small>
 
 この場所で、日々のことや考えたこと、好きなものについて少しずつ書いていこうと思います。
 
