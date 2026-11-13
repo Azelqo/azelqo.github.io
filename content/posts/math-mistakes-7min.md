@@ -4,9 +4,14 @@ date: 2026-11-13T12:00:00+09:00
 description: "数学の解き直しを得点につなげるため、ミスの原因を分類し、再挑戦と類題演習まで行う手順をまとめました。"
 categories: ["数学"]
 tags: ["数学", "問題集", "テスト対策"]
+image: "https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg"
 ---
 
 数学の問題を間違えたとき、解説を読んで赤ペンで答えを書き写し、そのまま次の問題へ進んでいないだろうか。解説を読んだ直後は理解できたように感じても、数日後に同じ問題を解くとまた間違えることがある。
+
+![数学の問題集とノートを使って学習する様子](https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg)
+
+<small>写真：<a href="https://www.pexels.com/photo/young-man-reading-a-book-and-studying-6958537/" target="_blank" rel="noopener"> Karola G / Pexels</a> — 数学の解き直しに取り組む学習風景</small>
 
 間違い直しの目的は、正しい答えをノートに残すことではない。同じ原因で次に失点しないようにすることだ。
 
