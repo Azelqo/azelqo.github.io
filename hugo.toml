@@ -2,7 +2,6 @@ baseURL = "https://azelqo.github.io/"
 locale = "ja-JP"
 defaultContentLanguage = "ja"
 title = "Azelqo"
-theme = "dream"
 enableRobotsTXT = true
 [pagination]
   pagerSize = 5
