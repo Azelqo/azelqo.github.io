@@ -1,0 +1,81 @@
+/* Azelqo — small refinements for the Dream theme */
+:root {
+  font-family: Inter, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  font-feature-settings: "palt";
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  letter-spacing: 0.015em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+a {
+  text-underline-offset: 0.22em;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* Give post cards a quieter, more editorial feel without changing Dream's layout. */
+.dream-grid > div {
+  transition: transform 180ms ease;
+}
+
+.dream-grid > div:hover {
+  transform: translateY(-3px);
+}
+
+.dream-grid a,
+.dream-grid article {
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+/* Comfortable line length for long-form Japanese writing. */
+.prose {
+  line-height: 1.95;
+  letter-spacing: 0.025em;
+}
+
+.prose p {
+  margin-block: 1.15em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  scroll-margin-top: 5.5rem;
+}
+
+.prose img {
+  border-radius: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
