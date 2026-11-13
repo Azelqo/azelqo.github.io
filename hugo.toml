@@ -7,33 +7,26 @@ title = "Azelqo"
 theme = "stack"
 enableRobotsTXT = true
 enableGitInfo = true
-
 [pagination]
   pagerSize = 8
-
 [permalinks]
   post = "/p/:slug/"
   page = "/:slug/"
-
 [params]
   mainSections = ["posts"]
   rssFullContent = true
-
   [params.footer]
     since = 2026
-
   [params.sidebar]
     compact = false
     subtitle = "日々の記録と、好きなこと。"
-
+    avatar = "img/avatar.jpg"
   [params.article]
     headingAnchor = false
     toc = true
     readingTime = true
-
     [params.article.license]
       enabled = false
-
   [params.widgets]
     homepage = [
       { type = "search" },
@@ -42,23 +35,18 @@ enableGitInfo = true
       { type = "tag-cloud", params = { limit = 12 } },
     ]
     page = [{ type = "toc" }]
-
   [params.colorScheme]
     toggle = true
     default = "auto"
-
   [params.comments]
     enabled = false
-
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
-
   [markup.tableOfContents]
     endLevel = 4
     ordered = true
     startLevel = 2
-
   [markup.highlight]
     noClasses = false
     codeFences = true
