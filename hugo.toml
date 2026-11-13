@@ -3,7 +3,7 @@ languageCode = "ja-JP"
 defaultContentLanguage = "ja"
 locale = "ja-JP"
 hasCJKLanguage = true
-title = "Azelqo"
+title = "MANABIXX"
 theme = "stack"
 enableRobotsTXT = true
 enableGitInfo = true
@@ -15,68 +15,17 @@ enableGitInfo = true
   post = "/p/:slug/"
   page = "/:slug/"
 
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "ホーム"
-    url = "/"
-    weight = 1
-    [menu.main.params]
-      icon = "home"
-  [[menu.main]]
-    identifier = "archives"
-    name = "アーカイブ"
-    url = "/archives/"
-    weight = 2
-    [menu.main.params]
-      icon = "archives"
-  [[menu.main]]
-    identifier = "categories"
-    name = "カテゴリー"
-    url = "/categories/"
-    weight = 3
-    [menu.main.params]
-      icon = "categories"
-  [[menu.main]]
-    identifier = "tags"
-    name = "タグ"
-    url = "/tags/"
-    weight = 4
-    [menu.main.params]
-      icon = "tag"
-  [[menu.main]]
-    identifier = "search"
-    name = "記事を検索"
-    url = "/search/"
-    weight = 5
-    [menu.main.params]
-      icon = "search"
-  [[menu.main]]
-    identifier = "links"
-    name = "リンク"
-    url = "/links/"
-    weight = 6
-    [menu.main.params]
-      icon = "link"
-  [[menu.main]]
-    identifier = "about"
-    name = "このブログについて"
-    url = "/about/"
-    weight = 7
-    [menu.main.params]
-      icon = "user"
-
 [params]
   mainSections = ["posts"]
   rssFullContent = true
   favicon = "favicon.svg"
-  description = "学び方、勉強の工夫、日々の気づきを記録する個人ブログ。"
+  description = "勉強のモチベーション、学習法、高校・高専・大学の進路情報を届ける教育メディア。"
   [params.footer]
     since = 2026
   [params.sidebar]
     avatar = "img/avatar.jpg"
     compact = false
-    subtitle = "学びの記録と、日々の気づき。"
+    subtitle = "学びの選択肢を広げる、受験と進路のメディア。"
   [params.article]
     headingAnchor = true
     toc = true
@@ -101,6 +50,10 @@ enableGitInfo = true
     default = "auto"
   [params.comments]
     enabled = false
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
 
 [markup]
   [markup.goldmark.renderer]
