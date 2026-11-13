@@ -1,78 +1,18 @@
 baseURL = "https://azelqo.github.io/"
+languageCode = "ja"
 defaultContentLanguage = "ja"
 locale = "ja-JP"
-hasCJKLanguage = true
 title = "Azelqo"
-theme = "stack"
+theme = "dream"
 enableRobotsTXT = true
-enableGitInfo = true
-enableEmoji = true
-
 [pagination]
-  pagerSize = 8
-
-[permalinks]
-  post = "/p/:slug/"
-  page = "/:slug/"
-
+  pagerSize = 9
 [params]
-  mainSections = ["posts"]
-  rssFullContent = true
-  favicon = "/favicon.svg"
-  description = "勉強法や学習習慣、受験対策、日々の気づきを記録する匿名の個人ブログ。実際に試せる勉強の工夫を、具体例とともに紹介します。"
-  image = "/ogp.svg"
-  [params.footer]
-    since = 2026
-  [params.sidebar]
-    avatar = "img/avatar.jpg"
-    compact = false
-    subtitle = "学びの記録と、日々の気づき。"
-  [params.article]
-    headingAnchor = true
-    toc = true
-    readingTime = true
-    [params.article.list]
-      showTags = false
-    [params.article.license]
-      enabled = false
-  [params.widgets]
-    homepage = [
-      { type = "search" },
-      { type = "archives", params = { limit = 6 } },
-      { type = "categories", params = { limit = 8 } },
-      { type = "tag-cloud", params = { limit = 12 } },
-    ]
-    page = [
-      { type = "toc" },
-      { type = "archives", params = { limit = 5 } },
-      { type = "categories", params = { limit = 8 } },
-      { type = "tag-cloud", params = { limit = 10 } },
-    ]
-  [params.colorScheme]
-    toggle = true
-    default = "auto"
-  [params.comments]
-    enabled = false
-  [params.opengraph]
-    [params.opengraph.twitter]
-      card = "summary_large_image"
-
-[sitemap]
-  changefreq = "weekly"
-  filename = "sitemap.xml"
-  priority = 0.5
-
-[markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-  [markup.tableOfContents]
-    endLevel = 4
-    ordered = true
-    startLevel = 2
-  [markup.highlight]
-    noClasses = false
-    codeFences = true
-    guessSyntax = true
-    lineNos = true
-    lineNumbersInTable = true
-    tabWidth = 4
+  author = "Azelqo"
+  headerTitle = "Azelqo"
+  motto = "日々のこと、考えたこと、好きなもの。"
+  description = "匿名の個人ブログ。日々の記録や、興味を持ったことを書いています。"
+  lightTheme = "emerald"
+  darkTheme = "forest"
+  siteStartYear = 2026
+  rss = true

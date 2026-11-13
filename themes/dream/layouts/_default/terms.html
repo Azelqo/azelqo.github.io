@@ -1,0 +1,25 @@
+{{ define "title" }}
+{{ $title := (strings.FirstUpper .Data.Plural) }}
+{{ $translation := T (print "all" $title) }}
+{{ default $title $translation -}}
+{{ end }}
+
+{{ define "pagination" }}
+  {{ .Store.Set "dreamPaginator" (.Paginate (where site.RegularPages (print ".Params." .Data.Plural) "ne" nil)) }}
+{{ end }}
+
+{{ define "main" }}
+  {{ $title := strings.FirstUpper .Data.Plural }}
+  {{ $termCount := len .Data.Terms }}
+  {{ $termLabel := cond (eq $termCount 1) .Data.Singular .Data.Plural }}
+  {{ $count := default (print $termCount " " $termLabel) (T .Data.Singular $termCount) }}
+  {{ partial "taxonomy-page.html" (dict "page" . "title" (default $title (T (print "all" $title))) "count" $count "terms" .Data.Terms.Alphabetical) }}
+{{ end }}
+
+{{ define "js" }}
+
+{{ if site.Params.Experimental.jsDate }}
+{{ partial "luxon.html" . }}
+{{ end }}
+
+{{ end }}
