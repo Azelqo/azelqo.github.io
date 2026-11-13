@@ -4,9 +4,14 @@ date: 2026-11-13T16:00:00+09:00
 description: "毎日を何となく過ごしていないか。目標に近づくために、勉強の質と時間の使い方を見直すメッセージ。"
 categories: ["勉強モチベーション"]
 tags: ["受験", "努力", "習慣", "目標"]
+image: "https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg"
 ---
 
 朝起きて、学校へ行く。授業を受けて、帰宅する。スマホを見て、少し休んで、気付けば夜。慌てて宿題を終わらせて、寝る。
+
+![机に向かい一つずつ学習を進める様子](https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg)
+
+<small>写真：<a href="https://www.pexels.com/photo/student-studying-on-a-wooden-table-5588404/" target="_blank" rel="noopener"> Tony Schnagl / Pexels</a> — 今日の小さな勉強を積み重ねるイメージ</small>
 
 そんな一日を過ごしたことはないだろうか。
 
