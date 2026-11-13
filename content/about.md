@@ -2,6 +2,11 @@
 title: "このブログについて"
 description: "Azelqoについて、ブログで扱うテーマや記事の読み方を紹介します。"
 date: 2026-11-13
+menu:
+  main:
+    weight: -90
+    params:
+      icon: user
 ---
 
 ## Azelqoについて
