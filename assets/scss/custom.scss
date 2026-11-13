@@ -1,0 +1,41 @@
+/* Azelqo custom refinements for Hugo Theme Stack */
+body {
+    font-family: Inter, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+        "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+}
+
+.article-content {
+    line-height: 1.95;
+    letter-spacing: 0.02em;
+}
+
+.article-content p {
+    margin-block: 1.15em;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    line-height: 1.5;
+    scroll-margin-top: 5rem;
+}
+
+::selection {
+    background: rgba(90, 130, 190, 0.25);
+}
+
+a {
+    text-underline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

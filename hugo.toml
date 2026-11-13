@@ -1,34 +1,68 @@
 baseURL = "https://azelqo.github.io/"
-languageCode = "ja"
+languageCode = "ja-JP"
 defaultContentLanguage = "ja"
 locale = "ja-JP"
+hasCJKLanguage = true
 title = "Azelqo"
-theme = "dream"
+theme = "stack"
 enableRobotsTXT = true
 enableGitInfo = true
 
 [pagination]
-  pagerSize = 9
+  pagerSize = 8
 
-[taxonomies]
-  category = "categories"
-  tag = "tags"
+[permalinks]
+  post = "/p/:slug/"
+  page = "/:slug/"
 
 [params]
-  author = "Azelqo"
-  headerTitle = "Azelqo"
-  motto = "日々の記録と、好きなこと。"
-  description = "日々の出来事、読んだ本、興味を持ったことを綴る個人ブログ。"
-  lightTheme = "winter"
-  darkTheme = "night"
-  siteStartYear = 2026
-  rss = true
-  stickyNav = true
-  showTableOfContents = true
-  showPrevNextPost = true
-  imageZoomableInPost = true
-  hideAuthorInSummary = true
-  reorderNavItems = ["posts", "categories", "tags", "about", "search", "rss"]
+  mainSections = ["posts"]
+  rssFullContent = true
 
-  [params.advanced]
-    customCSS = ["css/custom.css"]
+  [params.footer]
+    since = 2026
+
+  [params.sidebar]
+    compact = false
+    subtitle = "日々の記録と、好きなこと。"
+
+  [params.article]
+    headingAnchor = false
+    toc = true
+    readingTime = true
+
+    [params.article.license]
+      enabled = false
+
+  [params.widgets]
+    homepage = [
+      { type = "search" },
+      { type = "archives", params = { limit = 5 } },
+      { type = "categories", params = { limit = 8 } },
+      { type = "tag-cloud", params = { limit = 12 } },
+    ]
+    page = [{ type = "toc" }]
+
+  [params.colorScheme]
+    toggle = true
+    default = "auto"
+
+  [params.comments]
+    enabled = false
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = true
+    startLevel = 2
+
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    tabWidth = 4

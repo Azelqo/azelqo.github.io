@@ -1,0 +1,23 @@
+[[main]]
+  identifier = "home"
+  name = "ホーム"
+  url = "/"
+  weight = 1
+  [main.params]
+    icon = "home"
+
+[[main]]
+  identifier = "posts"
+  name = "ブログ"
+  url = "/posts/"
+  weight = 2
+  [main.params]
+    icon = "archives"
+
+[[main]]
+  identifier = "about"
+  name = "このブログについて"
+  url = "/about/"
+  weight = 3
+  [main.params]
+    icon = "user"
