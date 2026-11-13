@@ -491,3 +491,75 @@ body { font-size: 1rem; line-height: 1.7; }
 @media (max-width: 640px) {
   .article-list article.has-image .article-title, .article-list .article.has-image .article-title { font-size: 1rem; }
 }
+
+
+/* Stack demo layout: fixed, restrained side columns and a fluid article column.
+   Keep the original Stack three-column order and prevent the right widgets
+   from expanding with the available viewport width. */
+@media (min-width: 1024px) {
+  .main-container {
+    max-width: 1280px !important;
+    margin-inline: auto;
+  }
+  .container.extended {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px !important;
+    --left-sidebar-max-width: 220px;
+    --right-sidebar-max-width: 260px;
+  }
+  .container.extended > .left-sidebar {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    max-width: 220px !important;
+  }
+  .container.extended > main.main {
+    flex: 1 1 0% !important;
+    width: 0;
+    min-width: 0;
+  }
+  .container.extended > .right-sidebar {
+    display: flex;
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    max-width: 260px !important;
+    min-width: 0;
+    gap: 24px;
+  }
+  .right-sidebar .widget {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+  .right-sidebar .widget-title {
+    font-size: .92rem;
+    margin-bottom: 10px;
+  }
+  .right-sidebar .widget a,
+  .right-sidebar .widget li {
+    font-size: .84rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .container.extended { gap: 22px !important; }
+  .container.extended > .left-sidebar {
+    flex-basis: 190px !important;
+    width: 190px !important;
+    max-width: 190px !important;
+  }
+  .container.extended > .right-sidebar {
+    flex-basis: 230px !important;
+    width: 230px !important;
+    max-width: 230px !important;
+  }
+}
+@media (max-width: 1023px) {
+  .container.extended > .right-sidebar {
+    display: none !important;
+  }
+}
