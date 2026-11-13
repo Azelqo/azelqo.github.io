@@ -19,6 +19,7 @@ enableGitInfo = true
   [params.footer]
     since = 2026
   [params.sidebar]
+    avatar = "img/avatar.jpg"
     compact = false
     subtitle = "日々の記録と、好きなこと。"
   [params.article]
