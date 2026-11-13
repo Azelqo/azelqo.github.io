@@ -290,7 +290,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .az-home-page .container, .az-archive-page .container { max-width: none; }
 .az-home-page .main-container, .az-archive-page .main-container { max-width: 100%; }
 .az-home-page .main, .az-archive-page .main { width: 100%; min-width: 0; }
-.az-home, .az-archive { width: min(100% - 48px, var(--az-max)); margin: 0 auto; color: var(--az-text); }
+.az-home, .az-archive { width: min(calc(100% - 48px), var(--az-max)); margin: 0 auto; color: var(--az-text); }
 .az-home { padding: clamp(42px,7vw,92px) 0 100px; }
 .az-eyebrow { margin: 0 0 18px; color: var(--az-muted); font-size: 10px; font-weight: 800; letter-spacing: .18em; }
 .az-eyebrow span { padding: 0 7px; }
@@ -368,7 +368,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .az-code-copy { padding: 5px 9px; border: 1px solid var(--az-line); border-radius: 5px; background: transparent; cursor: pointer; }
 .az-code-copy:hover, .az-code-copy.is-copied { color: var(--az-accent); border-color: var(--az-accent); }
 @media (max-width: 720px) {
-  .az-home, .az-archive { width: min(100% - 36px, var(--az-max)); }
+  .az-home, .az-archive { width: min(calc(100% - 36px), var(--az-max)); }
   .az-feature-card { grid-template-columns: 1fr; }
   .az-feature-media { aspect-ratio: 16/9; }
   .az-feature-copy { padding: 22px; }
