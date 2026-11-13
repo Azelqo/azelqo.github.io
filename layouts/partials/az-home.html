@@ -17,6 +17,7 @@
   </header>
 
   {{- with $featured }}
+  {{- $feature := . -}}
   <section class="az-featured" aria-labelledby="az-featured-title">
     <div class="az-section-kicker"><span>FEATURED ARTICLE</span><span>01 / EDITOR'S PICK</span></div>
     <a class="az-feature-card" href="{{ .RelPermalink }}">
@@ -25,7 +26,7 @@
       {{- $parsed := urls.Parse $img -}}
       <div class="az-feature-media">
         <img src="{{ if $parsed.Scheme }}{{ $img }}{{ else }}{{ $img | relURL }}{{ end }}"
-          alt="{{ $.Params.imageAlt | default $.Title }}"
+          alt="{{ $feature.Params.imageAlt | default $feature.Title }}"
           width="1600" height="900" loading="eager" fetchpriority="high"
           decoding="async">
       </div>

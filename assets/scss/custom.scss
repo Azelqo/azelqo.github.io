@@ -311,7 +311,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .az-feature-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .az-feature-copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: clamp(22px,4vw,48px); }
 .az-card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 13px; color: var(--az-muted); font: 10px/1.5 ui-monospace,monospace; letter-spacing: .04em; }
-.az-category { display: inline-flex; padding: 4px 8px; border-radius: 4px; background: var(--az-soft); color: var(--az-accent); font: 700 10px/1.4 inherit; text-decoration: none; }
+.az-category { display: inline-flex; padding: 4px 8px; border-radius: 4px; background: var(--az-soft); color: var(--az-accent); font: inherit; font-size: 10px; font-weight: 700; line-height: 1.4; text-decoration: none; }
 .az-feature-copy h2 { margin: 20px 0 12px; font-size: clamp(23px,3vw,34px); line-height: 1.5; letter-spacing: -.04em; }
 .az-feature-copy p { margin: 0 0 25px; color: var(--az-muted); font-size: 13px; line-height: 1.9; }
 .az-latest { padding: 16px 0 76px; }
