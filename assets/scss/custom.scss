@@ -136,6 +136,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   overflow: hidden;
   background: rgba(128,128,128,.08);
 }
+.article-list .article-image > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .article-list .article-image img {
   display: block;
   width: 100%;
