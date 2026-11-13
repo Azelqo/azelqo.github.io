@@ -69,7 +69,7 @@ enableGitInfo = true
 [params]
   mainSections = ["posts"]
   rssFullContent = true
-  favicon = "img/favicon.svg"
+  favicon = "favicon.svg"
   description = "学び方、勉強の工夫、日々の気づきを記録する個人ブログ。"
   [params.footer]
     since = 2026
