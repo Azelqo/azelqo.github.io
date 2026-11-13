@@ -1,0 +1,8 @@
+{{- $type := lower (.Get "type" | default "info") -}}
+{{- if not (in (slice "tip" "warning" "info") $type) -}}{{- $type = "info" -}}{{- end -}}
+{{- $labels := dict "tip" "TIP" "warning" "WARNING" "info" "INFO" -}}
+<aside class="az-callout az-callout--{{ $type }}" role="note">
+  <div class="az-callout-label"><span class="az-callout-icon" aria-hidden="true">{{ if eq $type "tip" }}✦{{ else if eq $type "warning" }}!{{ else }}i{{ end }}</span>{{ index $labels $type }}</div>
+  {{- with .Get "title" }}<h3 class="az-callout-title">{{ . }}</h3>{{ end }}
+  <div class="az-callout-body">{{ .Inner | markdownify }}</div>
+</aside>

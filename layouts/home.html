@@ -1,17 +1,7 @@
+{{ define "body-class" }}az-home-page{{ end }}
 {{ define "main" }}
-    {{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
-    {{- $paginator := .Paginate ($pages.ByDate.Reverse) -}}
-
-    <section class="article-list">
-        {{ range $paginator.Pages }}
-            {{ partial "article-list/default" . }}
-        {{ end }}
-    </section>
-
-    {{- partial "pagination.html" . -}}
-    {{- partial "footer/footer" . -}}
+  {{ partial "az-home.html" . }}
+  {{ partialCached "footer/footer" . }}
 {{ end }}
-
-{{ define "right-sidebar" }}
-    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
-{{ end }}
+{{ define "left-sidebar" }}{{ end }}
+{{ define "right-sidebar" }}{{ end }}

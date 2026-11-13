@@ -1,0 +1,93 @@
+{{- $posts := where .Site.RegularPages "Section" "posts" -}}
+{{- $posts = $posts.ByDate.Reverse -}}
+{{- $featuredSet := where $posts "Params.featured" true -}}
+{{- $featured := false -}}
+{{- if gt (len $featuredSet) 0 -}}
+  {{- $featured = index $featuredSet 0 -}}
+{{- else if gt (len $posts) 0 -}}
+  {{- $featured = index $posts 0 -}}
+{{- end -}}
+<section class="az-home">
+  <header class="az-hero">
+    <p class="az-eyebrow">AZELQO <span> / </span> IDEAS · LEARNING · PERSPECTIVE</p>
+    <h1>考えることから、<br><span>未来は変わっていく。</span></h1>
+    <p class="az-hero-copy">勉強、思考、日々の発見。見過ごしがちなことを掘り下げ、自分の言葉で記録するナレッジブログ。</p>
+    <a class="az-text-link" href="{{ "/posts/" | relURL }}">記事を読む <span aria-hidden="true">↗</span></a>
+    <div class="az-hero-index" aria-hidden="true"><span>01</span><i></i><span>KNOWLEDGE JOURNAL</span></div>
+  </header>
+
+  {{- with $featured }}
+  <section class="az-featured" aria-labelledby="az-featured-title">
+    <div class="az-section-kicker"><span>FEATURED ARTICLE</span><span>01 / EDITOR'S PICK</span></div>
+    <a class="az-feature-card" href="{{ .RelPermalink }}">
+      {{- with .Params.image }}
+      {{- $img := . -}}
+      {{- $parsed := urls.Parse $img -}}
+      <div class="az-feature-media">
+        <img src="{{ if $parsed.Scheme }}{{ $img }}{{ else }}{{ $img | relURL }}{{ end }}"
+          alt="{{ $.Params.imageAlt | default $.Title }}"
+          width="1600" height="900" loading="eager" fetchpriority="high"
+          decoding="async">
+      </div>
+      {{- end }}
+      <div class="az-feature-copy">
+        <div class="az-card-meta">
+          {{- with .Params.categories }}<span class="az-category">{{ index . 0 }}</span>{{ end }}
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006.01.02" }}</time>
+          <span>{{ .ReadingTime }} MIN READ</span>
+        </div>
+        <h2 id="az-featured-title">{{ .Title }}</h2>
+        <p>{{ .Description | default (.Summary | plainify | htmlUnescape | truncate 150) }}</p>
+        <span class="az-read-link">記事を読む <span aria-hidden="true">↗</span></span>
+      </div>
+    </a>
+  </section>
+  {{- end }}
+
+  <section class="az-latest" aria-labelledby="az-latest-title">
+    <div class="az-section-heading">
+      <div><p class="az-eyebrow">THE JOURNAL</p><h2 id="az-latest-title">Latest articles<span>.</span></h2></div>
+      <a class="az-text-link" href="{{ "/posts/" | relURL }}">すべての記事 <span aria-hidden="true">→</span></a>
+    </div>
+    {{- $latest := $posts -}}
+    {{- if $featured }}{{ $latest = where $posts "Permalink" "ne" $featured.Permalink }}{{ end -}}
+    <div class="az-article-list">
+      {{- range $index, $page := first 8 $latest }}
+      <article class="az-article-row">
+        <span class="az-row-number">{{ printf "%02d" (add $index 1) }}</span>
+        <div class="az-row-main">
+          <div class="az-card-meta">
+            {{- with .Params.categories }}<a class="az-category" href="{{ printf "/categories/%s/" (index . 0 | urlize) | relURL }}">{{ index . 0 }}</a>{{ end }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+            <span>{{ .ReadingTime }} MIN</span>
+          </div>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Description | default (.Summary | plainify | htmlUnescape | truncate 110) }}</p>
+        </div>
+        <a class="az-row-arrow" href="{{ .RelPermalink }}" aria-label="{{ .Title }}を読む">↗</a>
+      </article>
+      {{- else }}
+      <p class="az-empty">記事はまだありません。</p>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="az-taxonomy" aria-label="記事を探す">
+    <div class="az-taxonomy-block">
+      <p class="az-eyebrow">EXPLORE BY CATEGORY</p><h2>Categories</h2>
+      <div class="az-chip-list">
+        {{- range $name, $pages := .Site.Taxonomies.categories }}
+        <a class="az-chip" href="{{ printf "/categories/%s/" ($name | urlize) | relURL }}">{{ $name }} <span>{{ len $pages }}</span></a>
+        {{- end }}
+      </div>
+    </div>
+    <div class="az-taxonomy-block">
+      <p class="az-eyebrow">DISCOVER TOPICS</p><h2>Tags</h2>
+      <div class="az-chip-list">
+        {{- range $name, $pages := .Site.Taxonomies.tags }}
+        <a class="az-chip" href="{{ printf "/tags/%s/" ($name | urlize) | relURL }}">#{{ $name }}</a>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+</section>
