@@ -4,9 +4,14 @@ date: 2026-11-13T10:00:00+09:00
 description: "教科書やノートを何度も読むだけの勉強から、記憶を引き出して定着させる学習へ。具体的な実践手順を解説します。"
 categories: ["勉強法"]
 tags: ["暗記", "英語", "理科", "社会"]
+image: "https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg"
 ---
 
 教科書を何度も読み返したのに、テストになると答えが出てこない。ノートを見れば分かるのに、何も見ずに説明しようとすると言葉が止まる。これは珍しいことではない。見ているときに「分かる」と感じることと、必要なときに自力で思い出せることは別だからだ。
+
+![ノートを閉じて、学んだ内容を思い出している学習風景](https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg)
+
+<small>写真：<a href="https://www.pexels.com/photo/pensive-female-student-writing-notes-while-studying-in-light-room-6237957/" target="_blank" rel="noopener"> Gabby K. / Pexels</a> — 教科書を閉じて思い出す練習のイメージ</small>
 
 そこで取り入れたいのが、学んだ内容をいったん隠し、自分の頭から取り出す練習である。学習法ではアクティブリコール（想起練習）と呼ばれることがある。
 
