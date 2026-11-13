@@ -451,3 +451,43 @@ button, input, select, textarea { font: inherit; }
 @media (hover: none) {
   .article-list article:hover, .article-list .article:hover { background: transparent !important; }
 }
+
+/* Typography correction: restrained editorial scale */
+html { font-size: 15px; }
+body { font-size: 1rem; line-height: 1.7; }
+.site-name a { font-size: 1.32rem; }
+.site-description { font-size: .88rem; line-height: 1.65; }
+.menu a { font-size: .91rem; min-height: 40px; padding: 8px 11px; }
+.widget { font-size: .88rem; line-height: 1.6; }
+.widget-title { font-size: .98rem; margin-bottom: 10px; }
+.widget a, .widget li { font-size: .87rem; line-height: 1.6; }
+.article-list .article-title { font-size: clamp(1.08rem, 1.35vw, 1.28rem); line-height: 1.48; font-weight: 700; }
+.article-list .article-subtitle { font-size: .88rem; line-height: 1.7; }
+.article-list .article-time, .article-list .article-meta, .article-list footer { font-size: .76rem; line-height: 1.5; }
+.article-list .article-category, .article-list .article-category a, .article-list .article-details .article-category { font-size: .75rem; }
+.article-list article .article-details, .article-list .article .article-details { padding-top: 21px !important; padding-bottom: 21px !important; gap: 8px; }
+.article-content { font-size: 1rem; line-height: 1.9; }
+.article-content h2 { font-size: 1.4rem; }
+.article-content h3 { font-size: 1.18rem; }
+.article-content h4 { font-size: 1.05rem; }
+.article-page .article-title { font-size: clamp(1.75rem, 3vw, 2.35rem); line-height: 1.35; }
+.article-page .article-header .article-time, .article-page .article-header .article-meta { font-size: .82rem; }
+.pagination a, .pagination button { min-width: 38px; min-height: 38px; font-size: .88rem; }
+.tagCloud a, .tag-cloud a, .article-tags a { font-size: .8rem; padding: .35em .7em; }
+.search-form input { min-height: 40px; font-size: .9rem; }
+@media (max-width: 768px) {
+  html { font-size: 14px; }
+  .site-name a { font-size: 1.25rem; }
+  .menu a { font-size: .9rem; min-height: 40px; }
+  .article-list .article-title { font-size: 1.12rem; }
+  .article-list .article-subtitle { font-size: .84rem; }
+  .article-list .article-time, .article-list .article-meta, .article-list footer { font-size: .74rem; }
+  .article-list article .article-details, .article-list .article .article-details { padding: 17px 8px !important; }
+  .article-content { font-size: .98rem; line-height: 1.85; }
+  .article-content h2 { font-size: 1.28rem; }
+  .article-content h3 { font-size: 1.12rem; }
+  .article-page .article-title { font-size: clamp(1.55rem, 6vw, 2rem); }
+}
+@media (max-width: 640px) {
+  .article-list article.has-image .article-title, .article-list .article.has-image .article-title { font-size: 1rem; }
+}
