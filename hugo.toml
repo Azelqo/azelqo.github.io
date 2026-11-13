@@ -1,18 +1,65 @@
 baseURL = "https://azelqo.github.io/"
 languageCode = "ja"
 defaultContentLanguage = "ja"
-locale = "ja-JP"
 title = "Azelqo"
-theme = "dream"
 enableRobotsTXT = true
 [pagination]
-  pagerSize = 9
+  pagerSize = 5
+
+[module]
+  [[module.imports]]
+    path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+
 [params]
-  author = "Azelqo"
-  headerTitle = "Azelqo"
-  motto = "日々のこと、考えたこと、好きなもの。"
-  description = "匿名の個人ブログ。日々の記録や、興味を持ったことを書いています。"
-  lightTheme = "emerald"
-  darkTheme = "forest"
-  siteStartYear = 2026
-  rss = true
+  mainSections = ["posts"]
+  featuredImageField = "image"
+  rssFullContent = true
+
+[params.sidebar]
+  emoji = "✍️"
+  subtitle = "日々のこと、考えたこと、好きなもの。"
+
+[params.sidebar.avatar]
+  enabled = false
+
+[params.article]
+  toc = true
+  readingTime = true
+  license = false
+
+[params.colorScheme]
+  toggle = true
+  default = "auto"
+
+[[params.widgets.homepage]]
+  type = "search"
+
+[[params.widgets.homepage]]
+  type = "archives"
+  [params.widgets.homepage.params]
+    limit = 5
+
+[[params.widgets.homepage]]
+  type = "categories"
+  [params.widgets.homepage.params]
+    limit = 10
+
+[[params.widgets.homepage]]
+  type = "tag-cloud"
+  [params.widgets.homepage.params]
+    limit = 20
+
+[[params.widgets.page]]
+  type = "toc"
+
+[[menu.main]]
+  identifier = "home"
+  name = "ホーム"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "archives"
+  name = "記事一覧"
+  url = "/archives/"
+  weight = 2
