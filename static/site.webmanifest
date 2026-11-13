@@ -4,8 +4,8 @@
   "description": "学びの記録と、日々の気づき。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fffaf6",
-  "theme_color": "#ff6900",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
   "icons": [
     {
       "src": "/icon.svg",
