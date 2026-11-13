@@ -33,7 +33,7 @@ jobs:
           extended: true
 
       - name: Resolve Hugo theme module
-        run: hugo mod download
+        run: hugo mod get
 
       - name: Build
         run: hugo --minify --printPathWarnings
