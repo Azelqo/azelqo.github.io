@@ -1,0 +1,18 @@
+baseURL = "https://azelqo.github.io/"
+languageCode = "ja"
+defaultContentLanguage = "ja"
+locale = "ja-JP"
+title = "Azelqo"
+theme = "dream"
+enableRobotsTXT = true
+[pagination]
+  pagerSize = 9
+[params]
+  author = "Azelqo"
+  headerTitle = "Azelqo"
+  motto = "日々のこと、考えたこと、好きなもの。"
+  description = "匿名の個人ブログ。日々の記録や、興味を持ったことを書いています。"
+  lightTheme = "emerald"
+  darkTheme = "forest"
+  siteStartYear = 2026
+  rss = true
