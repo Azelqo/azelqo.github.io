@@ -4,9 +4,14 @@ date: 2026-11-13T13:00:00+09:00
 description: "テスト直前に新しい教材へ手を広げず、弱点の確認と実戦演習を組み合わせて仕上げる一週間の使い方を紹介します。"
 categories: ["テスト対策"]
 tags: ["定期テスト", "模試", "直前対策"]
+image: "https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg"
 ---
 
 テストまであと一週間。問題集はまだ残っているし、暗記も不安。何から手を付ければいいか分からず、焦って新しい参考書を開きたくなることもあると思う。
+
+![机に向かって試験勉強を進める様子](https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg)
+
+<small>写真：<a href="https://www.pexels.com/photo/student-studying-on-a-wooden-table-5588404/" target="_blank" rel="noopener"> Tony Schnagl / Pexels</a> — テスト前の学習計画と演習のイメージ</small>
 
 でも、直前期に大切なのは、勉強量をむやみに増やすことではない。今の自分が落としやすい問題を見つけ、限られた時間を得点につながる部分へ使うことだ。
 
