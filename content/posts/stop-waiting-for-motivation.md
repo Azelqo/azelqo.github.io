@@ -4,14 +4,14 @@ date: 2026-11-13T15:00:00+09:00
 description: "やる気を待っている間にも時間は過ぎていく。気分に左右されず机に向かうための具体的な仕組みを考えます。"
 categories: ["勉強モチベーション"]
 tags: ["やる気", "習慣", "集中力", "受験"]
-image: "https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg"
+image: "https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg"
 ---
 
 「今日は疲れたから明日やろう」「やる気が出たら始めよう」。この言葉を何度使っただろうか。
 
-![机に向かいノートに書き込む学習者](https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg)
+![机に向かいノートに書き込む学習者](https://images.pexels.com/photos/6958537/pexels-photo-6958537.jpeg?cs=srgb&dl=pexels-karola-g-6958537.jpg&fm=jpg)
 
-<small>写真：<a href="https://www.pexels.com/photo/student-studying-on-a-wooden-table-5588404/" target="_blank" rel="noopener"> Tony Schnagl / Pexels</a> — 勉強を始めるために机に向かう様子</small>
+<small>写真：<a href="https://www.pexels.com/photo/young-man-reading-a-book-and-studying-6958537/" target="_blank" rel="noopener"> Karola G / Pexels</a> — 勉強を始めるために机に向かう様子</small>
 
 勉強しなければいけないことは分かっている。志望校や目標もある。なのに、気付けば動画を見ている。スマホを触っている。机に座るまでに何十分もかかる。
 
