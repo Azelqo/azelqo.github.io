@@ -5,11 +5,10 @@ description: "教科書やノートを何度も読むだけの勉強から、記
 categories: ["勉強法"]
 tags: ["暗記", "英語", "理科", "社会"]
 image: "https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg"
+imageAlt: "ノートを閉じて、学んだ内容を思い出している学習風景"
 ---
 
 教科書を何度も読み返したのに、テストになると答えが出てこない。ノートを見れば分かるのに、何も見ずに説明しようとすると言葉が止まる。これは珍しいことではない。見ているときに「分かる」と感じることと、必要なときに自力で思い出せることは別だからだ。
-
-![ノートを閉じて、学んだ内容を思い出している学習風景](https://images.pexels.com/photos/6237957/pexels-photo-6237957.jpeg?cs=srgb&dl=pexels-gabby-k-6237957.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/pensive-female-student-writing-notes-while-studying-in-light-room-6237957/" target="_blank" rel="noopener"> Gabby K. / Pexels</a> — 教科書を閉じて思い出す練習のイメージ</small>
 

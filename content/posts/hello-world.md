@@ -10,11 +10,10 @@ tags:
   - ブログ
 draft: false
 image: "https://images.pexels.com/photos/8618029/pexels-photo-8618029.jpeg?cs=srgb&dl=pexels-yankrukov-8618029.jpg&fm=jpg"
+imageAlt: "本とノートを広げた勉強机"
 ---
 
 こんにちは。Azelqoです。
-
-![本とノートを広げた勉強机](https://images.pexels.com/photos/8618029/pexels-photo-8618029.jpeg?cs=srgb&dl=pexels-yankrukov-8618029.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/student-reading-book-8618029/" target="_blank" rel="noopener"> Yan Krukau / Pexels</a> — Azelqoブログの学習テーマを表す写真</small>
 

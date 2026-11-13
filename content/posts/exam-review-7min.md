@@ -5,11 +5,10 @@ description: "テスト直前に新しい教材へ手を広げず、弱点の確
 categories: ["テスト対策"]
 tags: ["定期テスト", "模試", "直前対策"]
 image: "https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg"
+imageAlt: "机に向かって試験勉強を進める様子"
 ---
 
 テストまであと一週間。問題集はまだ残っているし、暗記も不安。何から手を付ければいいか分からず、焦って新しい参考書を開きたくなることもあると思う。
-
-![机に向かって試験勉強を進める様子](https://images.pexels.com/photos/5588404/pexels-photo-5588404.jpeg?cs=srgb&dl=pexels-tony-schnagl-5588404.jpg&fm=jpg)
 
 <small>写真：<a href="https://www.pexels.com/photo/student-studying-on-a-wooden-table-5588404/" target="_blank" rel="noopener"> Tony Schnagl / Pexels</a> — テスト前の学習計画と演習のイメージ</small>
 
