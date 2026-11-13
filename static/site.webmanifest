@@ -1,7 +1,7 @@
 {
-  "name": "Azelqo",
-  "short_name": "Azelqo",
-  "description": "学びの記録と、日々の気づき。",
+  "name": "MANABIXX Media",
+  "short_name": "MANABIXX",
+  "description": "勉強のモチベーション、学習法、高校・高専・大学の進路情報を届ける教育メディア。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
