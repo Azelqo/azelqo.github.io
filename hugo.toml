@@ -25,40 +25,33 @@ enableEmoji = true
     [menu.main.params]
       icon = "home"
   [[menu.main]]
+    identifier = "about"
+    name = "このブログについて"
+    url = "/about/"
+    weight = 2
+    [menu.main.params]
+      icon = "user"
+  [[menu.main]]
     identifier = "archives"
     name = "アーカイブ"
     url = "/archives/"
-    weight = 2
+    weight = 3
     [menu.main.params]
       icon = "archives"
-  [[menu.main]]
-    identifier = "tags"
-    name = "タグ"
-    url = "/tags/"
-    weight = 4
-    [menu.main.params]
-      icon = "tag"
   [[menu.main]]
     identifier = "search"
     name = "記事を検索"
     url = "/search/"
-    weight = 5
+    weight = 4
     [menu.main.params]
       icon = "search"
   [[menu.main]]
     identifier = "links"
     name = "リンク"
     url = "/links/"
-    weight = 6
+    weight = 5
     [menu.main.params]
       icon = "link"
-  [[menu.main]]
-    identifier = "about"
-    name = "このブログについて"
-    url = "/about/"
-    weight = 7
-    [menu.main.params]
-      icon = "user"
 
 [params]
   mainSections = ["posts"]
