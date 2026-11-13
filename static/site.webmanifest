@@ -1,0 +1,16 @@
+{
+  "name": "Azelqo",
+  "short_name": "Azelqo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ff6900",
+  "theme_color": "#ff6900",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
