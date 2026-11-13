@@ -7,49 +7,57 @@
     icon = "home"
 
 [[main]]
-  identifier = "motivation"
-  name = "勉強モチベ"
-  url = "/categories/勉強モチベーション/"
+  identifier = "posts"
+  name = "すべての記事"
+  url = "/posts/"
   weight = 2
   [main.params]
-    icon = "categories"
+    icon = "archives"
 
 [[main]]
-  identifier = "high-school"
-  name = "高校特集"
-  url = "/categories/高校特集/"
+  identifier = "study-method"
+  name = "勉強法"
+  url = "/categories/勉強法/"
   weight = 3
   [main.params]
     icon = "categories"
 
 [[main]]
-  identifier = "kosen"
-  name = "高専特集"
-  url = "/categories/高専特集/"
+  identifier = "exam"
+  name = "テスト対策"
+  url = "/categories/テスト対策/"
   weight = 4
   [main.params]
     icon = "categories"
 
 [[main]]
-  identifier = "university"
-  name = "大学特集"
-  url = "/categories/大学特集/"
+  identifier = "motivation"
+  name = "勉強モチベーション"
+  url = "/categories/勉強モチベーション/"
   weight = 5
   [main.params]
     icon = "categories"
 
 [[main]]
-  identifier = "posts"
-  name = "すべての記事"
-  url = "/posts/"
+  identifier = "archives"
+  name = "アーカイブ"
+  url = "/archives/"
   weight = 6
   [main.params]
     icon = "archives"
 
 [[main]]
-  identifier = "about"
-  name = "このメディアについて"
-  url = "/about/"
+  identifier = "search"
+  name = "記事を検索"
+  url = "/search/"
   weight = 7
+  [main.params]
+    icon = "search"
+
+[[main]]
+  identifier = "about"
+  name = "このブログについて"
+  url = "/about/"
+  weight = 8
   [main.params]
     icon = "user"
