@@ -7,17 +7,49 @@
     icon = "home"
 
 [[main]]
-  identifier = "posts"
-  name = "ブログ"
-  url = "/posts/"
+  identifier = "motivation"
+  name = "勉強モチベ"
+  url = "/categories/勉強モチベーション/"
   weight = 2
+  [main.params]
+    icon = "火"
+
+[[main]]
+  identifier = "high-school"
+  name = "高校特集"
+  url = "/categories/高校特集/"
+  weight = 3
+  [main.params]
+    icon = "school"
+
+[[main]]
+  identifier = "kosen"
+  name = "高専特集"
+  url = "/categories/高専特集/"
+  weight = 4
+  [main.params]
+    icon = "book"
+
+[[main]]
+  identifier = "university"
+  name = "大学特集"
+  url = "/categories/大学特集/"
+  weight = 5
+  [main.params]
+    icon = "graduation-cap"
+
+[[main]]
+  identifier = "posts"
+  name = "すべての記事"
+  url = "/posts/"
+  weight = 6
   [main.params]
     icon = "archives"
 
 [[main]]
   identifier = "about"
-  name = "このブログについて"
+  name = "このメディアについて"
   url = "/about/"
-  weight = 3
+  weight = 7
   [main.params]
     icon = "user"
