@@ -39,9 +39,9 @@ jobs:
           test -s public/search/index.html
           grep -q 'lang="ja-JP"' public/index.html
           grep -q '"@type":"WebSite"' public/index.html
-          for page in public/p/*/index.html; do
+          for page in public/posts/*/index.html; do
             grep -q '"@type":"BlogPosting"' "$page"
-            grep -q 'alt="[^"]\+"' "$page"
+            grep -Eq 'alt="[^"]+"' "$page"
           done
 
       - name: Upload artifact
