@@ -342,3 +342,18 @@ a { color: inherit; }
     background: rgba(255,255,255,.13);
   }
 }
+
+/* Explicit dark-mode toggle support */
+[data-scheme="dark"] .menu .current a,
+[data-scheme="dark"] .menu a.active { background: rgba(255,255,255,.10); color: #fff; }
+[data-scheme="dark"] .article-list .article-category,
+[data-scheme="dark"] .article-list .article-category a,
+[data-scheme="dark"] .article-list .article-details .article-category { color: #e5e5e5; }
+[data-scheme="dark"] .article-content h2 { border-left-color: #ddd; }
+[data-scheme="dark"] .article-content blockquote { border-left-color: #ddd; background: rgba(255,255,255,.055); }
+[data-scheme="dark"] .tagCloud a,
+[data-scheme="dark"] .tag-cloud a,
+[data-scheme="dark"] .article-tags a { background: rgba(255,255,255,.07); }
+[data-scheme="dark"] .tagCloud a:hover,
+[data-scheme="dark"] .tag-cloud a:hover,
+[data-scheme="dark"] .article-tags a:hover { background: rgba(255,255,255,.13); }
