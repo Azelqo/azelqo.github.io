@@ -5,14 +5,30 @@ locale = "ja-JP"
 title = "Azelqo"
 theme = "dream"
 enableRobotsTXT = true
+enableGitInfo = true
+
 [pagination]
   pagerSize = 9
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
 [params]
   author = "Azelqo"
   headerTitle = "Azelqo"
-  motto = "日々のこと、考えたこと、好きなもの。"
-  description = "匿名の個人ブログ。日々の記録や、興味を持ったことを書いています。"
-  lightTheme = "emerald"
-  darkTheme = "forest"
+  motto = "日々の記録と、好きなこと。"
+  description = "日々の出来事、読んだ本、興味を持ったことを綴る個人ブログ。"
+  lightTheme = "winter"
+  darkTheme = "night"
   siteStartYear = 2026
   rss = true
+  stickyNav = true
+  showTableOfContents = true
+  showPrevNextPost = true
+  imageZoomableInPost = true
+  hideAuthorInSummary = true
+  reorderNavItems = ["posts", "categories", "tags", "about", "search", "rss"]
+
+  [params.advanced]
+    customCSS = ["css/custom.css"]
