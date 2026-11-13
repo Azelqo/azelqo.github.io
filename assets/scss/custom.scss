@@ -1,41 +1,50 @@
-/* Azelqo custom refinements for Hugo Theme Stack */
+/* Azelqo — Stack theme refinement */
+:root {
+  --accent-color: #e66b24;
+  --accent-color-darker: #c65316;
+  --accent-color-text: #fff;
+}
 body {
-    font-family: Inter, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
-        "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
-    letter-spacing: 0.015em;
-    -webkit-font-smoothing: antialiased;
+  font-family: Inter, "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  letter-spacing: .012em;
+  -webkit-font-smoothing: antialiased;
 }
-
-.article-content {
-    line-height: 1.95;
-    letter-spacing: 0.02em;
+.article-content { line-height: 1.95; letter-spacing: .018em; }
+.article-content p { margin-block: 1.2em; }
+.article-content h2, .article-content h3, .article-content h4 {
+  line-height: 1.5; scroll-margin-top: 5rem; font-weight: 750;
 }
-
-.article-content p {
-    margin-block: 1.15em;
+.article-content h2 {
+  border-left: 4px solid #e66b24;
+  padding: .15em 0 .15em .75em;
+  margin-top: 2.4em;
 }
-
-.article-content h2,
-.article-content h3,
-.article-content h4 {
-    line-height: 1.5;
-    scroll-margin-top: 5rem;
+.article-content blockquote {
+  border-left: 3px solid #e66b24;
+  background: rgba(230,107,36,.07);
+  border-radius: 0 10px 10px 0;
+  padding: .8em 1.1em;
 }
-
-::selection {
-    background: rgba(90, 130, 190, 0.25);
+.article-content table { display:block; overflow-x:auto; }
+.article-list article, .article-list .article {
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-
-a {
-    text-underline-offset: 0.2em;
+.article-list article:hover, .article-list .article:hover { transform: translateY(-3px); }
+.sidebar .site-avatar img { border-radius: 22%; }
+.menu a, .widget a { transition: color .18s ease; }
+::selection { background: rgba(230,107,36,.23); }
+a { text-underline-offset: .2em; }
+@media (min-width: 1200px) {
+  .main-container { max-width: 1440px; }
 }
-
+@media (max-width: 768px) {
+  .article-content { line-height: 1.9; }
+}
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
 }
