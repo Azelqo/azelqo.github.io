@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171a20"/><stop offset="1" stop-color="#35312c"/></linearGradient><linearGradient id="lamp" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0bf"/><stop offset="1" stop-color="#d69d55"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/><circle cx="890" cy="280" r="260" fill="#f5d89a" opacity=".08"/>
+<text x="88" y="105" fill="#e8c58d" font-family="Arial,sans-serif" font-size="22" letter-spacing="7">AZELQO / HOME &amp; TOOLS</text>
+<text x="88" y="205" fill="#f7f3e9" font-family="sans-serif" font-size="55" font-weight="700">照明の色を選ぶ</text><text x="88" y="270" fill="#f7f3e9" font-family="sans-serif" font-size="42">色温度と明るさの基本</text>
+<path d="M780 155v65M740 220h80l-12 95h-56z" fill="url(#lamp)" stroke="#f5d89a" stroke-width="5" stroke-linejoin="round"/><path d="M780 315v90" stroke="#e9c58c" stroke-width="12"/><path d="M780 405h-155v70h310v-70z" fill="#c4a77b"/><path d="M655 475v65M905 475v65" stroke="#c4a77b" stroke-width="12"/>
+<path d="M720 330l-80 45M840 330l80 45M780 330v55" stroke="#f1d79f" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+<rect x="110" y="365" width="450" height="145" rx="20" fill="#232a2d" stroke="#8e9a91" stroke-width="2"/>
+<rect x="145" y="405" width="110" height="35" rx="17" fill="#f2b86d"/><rect x="280" y="405" width="110" height="35" rx="17" fill="#e8d5a3"/><rect x="415" y="405" width="110" height="35" rx="17" fill="#d4e6df"/>
+<text x="200" y="470" fill="#f7f3e9" text-anchor="middle" font-family="sans-serif" font-size="17">電球色</text><text x="335" y="470" fill="#f7f3e9" text-anchor="middle" font-family="sans-serif" font-size="17">温白色</text><text x="470" y="470" fill="#f7f3e9" text-anchor="middle" font-family="sans-serif" font-size="17">昼白色</text>
+<text x="88" y="590" fill="#c7c1b4" font-family="sans-serif" font-size="19">色温度・明るさ・演色性を分けて考える。</text></svg>
