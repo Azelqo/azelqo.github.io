@@ -173,7 +173,7 @@ def apply_site_settings(props: dict) -> None:
     config = path.read_text(encoding="utf-8")
     def replace_one(pattern: str, replacement: str) -> None:
         nonlocal config
-        config, count = re.subn(pattern, lambda _: replacement, config, count=1, flags=re.MULTILINE)
+        config, count = re.subn(pattern, replacement if callable(replacement) else lambda _: replacement, config, count=1, flags=re.MULTILINE)
         if count != 1: raise RuntimeError(f"Could not update Hugo setting: {pattern}")
     def ts(value: str) -> str:
         return json.dumps(value, ensure_ascii=False)
