@@ -25,7 +25,7 @@ Notionで新しいページを作り、**テーブル形式のデータベース
 3. コンテンツ読み取り権限を有効にする
 4. 表示されたInternal Integration Secretをコピーする
 5. 作成した記事データベースの「…」→「コネクト」から「Azelqo Sync」を追加する
-6. データベースURLに含まれるIDを控える（32桁の英数字。ハイフン付きでも可）
+6. GitHub Secretsには、今回作成済みのデータソースIDを登録します。
 
 **トークンはチャットに貼らず、GitHub Secretsに直接登録してください。**
 
@@ -34,7 +34,7 @@ Notionで新しいページを作り、**テーブル形式のデータベース
 リポジトリ https://github.com/Azelqo/azelqo.github.io/settings/secrets/actions を開き、Repository secretsに次の2つを追加します。
 
 - `NOTION_TOKEN`: NotionのInternal Integration Secret
-- `NOTION_DATABASE_ID`: 記事データベースのID
+- `NOTION_DATA_SOURCE_ID`: 記事データベースのデータソースID（`419d04e1-ae7c-81ee-8edc-000ba566f43a`）
 
 ## 4. 動作確認
 
