@@ -1,6 +1,12 @@
 name: Sync Notion notes
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/notion_sync.py"
+      - "hugo.toml"
+      - ".github/workflows/notion-sync.yml"
   schedule:
     - cron: "*/10 * * * *"
   workflow_dispatch:
