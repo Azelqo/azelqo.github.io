@@ -218,16 +218,15 @@ def main() -> None:
         slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
         filename = f"{slug}.md"
         keep.add(filename)
-        date_value = (props.get("投稿日", {}).get("date") or {}).get("start")
-        if not date_value: date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
-        if len(date_value) == 10: date_value += "T09:00:00+09:00"
+        # Use Notion page last_edited_time so every content or property edit updates the displayed article date.
+        date_value = page.get("last_edited_time") or page.get("created_time") or dt.datetime.now(dt.timezone.utc).isoformat()
         description = prop_text(props, "記事の概要").strip()
         tags = prop_multi(props, "タグ")
         categories = prop_multi(props, "カテゴリー")
         body = get_page_markdown(page["id"])
         front = [
             "---", f"title: {yaml_string(title)}", f"description: {yaml_string(description)}",
-            f"date: {yaml_string(date_value)}", f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            f"date: {yaml_string(date_value)}", f"lastmod: {yaml_string(date_value)}",
             'author: "Azelqo"', "draft: false", "categories:",
         ]
         front.extend([f"  - {yaml_string(x)}" for x in categories] or ['  - "メモ"'])
