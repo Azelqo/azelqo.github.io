@@ -32,7 +32,7 @@ def request(method: str, path: str, payload: dict | None = None) -> dict:
         with urllib.request.urlopen(req, timeout=30) as response:
             return json.loads(response.read().decode())
     except urllib.error.HTTPError as exc:
-        raise RuntimeError(f"Notion API {exc.code}: {exc.read().decode(errors='replace')}") from exc
+        raise RuntimeError(f"Notion API {exc.code} at {method} {path}: {exc.read().decode(errors='replace')}") from exc
 
 def paginated(path: str, payload: dict | None = None):
     body = dict(payload or {})
@@ -259,6 +259,8 @@ def main() -> None:
         or (page.get("parent") or {}).get("database_id") == DATA_SOURCE_ID
     ]
     print(f"Found {len(pages)} page(s) in the Azelqo Notion data source.")
+    if not pages:
+        raise RuntimeError("No pages were returned for the configured Notion data source; refusing to delete existing posts.")
     keep: set[str] = set()
     published = 0
     settings = None
@@ -283,6 +285,7 @@ def main() -> None:
         description = prop_text(props, "記事の概要").strip()
         tags = prop_multi(props, "タグ")
         categories = prop_multi(props, "カテゴリー")
+        print(f"Reading Notion article: {title} ({page['id']})")
         body = get_page_markdown(page["id"])
         front = [
             "---", f"title: {yaml_string(title)}", f"description: {yaml_string(description)}",
