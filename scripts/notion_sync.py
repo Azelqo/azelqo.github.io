@@ -3,6 +3,7 @@
 from __future__ import annotations
 import datetime as dt
 import json
+import mimetypes
 import os
 import re
 import sys
@@ -128,7 +129,46 @@ def slugify(value: str) -> str:
     value = re.sub(r"[^a-z0-9ぁ-んァ-ン一-龥ー]+", "-", value)
     return value.strip("-") or "note"
 
+def sync_sidebar_avatar(props: dict) -> str | None:
+    files = (props.get("SidebarAvatar", {}).get("files") or [])
+    if not files:
+        for old in Path("static/img").glob("notion-avatar.*"):
+            old.unlink()
+        return None
+
+    item = files[0]
+    source = item.get("file") or item.get("external") or {}
+    url = source.get("url")
+    if not url:
+        raise RuntimeError("SidebarAvatar is set but has no downloadable URL")
+
+    request_obj = urllib.request.Request(url, headers={"User-Agent": "Azelqo-Notion-Sync/1.0"})
+    with urllib.request.urlopen(request_obj, timeout=30) as response:
+        data = response.read(8 * 1024 * 1024 + 1)
+        content_type = response.headers.get_content_type().lower()
+    if len(data) > 8 * 1024 * 1024:
+        raise RuntimeError("Sidebar avatar must be 8 MB or smaller")
+
+    signatures = {
+        "image/jpeg": (".jpg", data.startswith(bytes.fromhex("ffd8ff"))),
+        "image/png": (".png", data.startswith(bytes.fromhex("89504e470d0a1a0a"))),
+        "image/webp": (".webp", len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP"),
+        "image/gif": (".gif", data.startswith((b"GIF87a", b"GIF89a"))),
+    }
+    if content_type not in signatures or not signatures[content_type][1]:
+        raise RuntimeError("Sidebar avatar must be a valid JPEG, PNG, WebP, or GIF image")
+
+    extension = signatures[content_type][0]
+    image_dir = Path("static/img")
+    image_dir.mkdir(parents=True, exist_ok=True)
+    for old in image_dir.glob("notion-avatar.*"):
+        old.unlink()
+    (image_dir / f"notion-avatar{extension}").write_bytes(data)
+    return f"img/notion-avatar{extension}"
+
+
 def apply_site_settings(props: dict) -> None:
+    avatar_src = sync_sidebar_avatar(props)
     path = Path("hugo.toml")
     config = path.read_text(encoding="utf-8")
     def replace_one(pattern: str, replacement: str) -> None:
@@ -146,6 +186,9 @@ def apply_site_settings(props: dict) -> None:
         config = re.sub(r"^(title\s*=.*)$", lambda m: m.group(1) + "\ndescription = " + desc, config, count=1, flags=re.MULTILINE)
     replace_one(r"^  emoji\s*=.*$", f"  emoji = {ts(prop_text(props, 'SidebarEmoji') or '🖥️')}")
     replace_one(r"^  subtitle\s*=.*$", f"  subtitle = {ts(prop_text(props, 'SidebarSubtitle'))}")
+    replace_one(r"(?s)(\[params\.sidebar\.avatar\]\n  enabled\s*=)[^\n]*", lambda m: m.group(1) + f" {str(avatar_src is not None).lower()}")
+    replace_one(r"(?s)(\[params\.sidebar\.avatar\].*?\n  local\s*=)[^\n]*", lambda m: m.group(1) + " true")
+    replace_one(r"(?s)(\[params\.sidebar\.avatar\].*?\n  src\s*=)[^\n]*", lambda m: m.group(1) + f" {ts(avatar_src or 'img/notion-avatar.png')}")
     replace_one(r"^  since\s*=.*$", f"  since = {prop_number(props, 'FooterSince', 2026)}")
     replace_one(r"^  default\s*=.*$", f"  default = {ts(prop_select(props, 'DefaultColorScheme') or 'auto')}")
     replace_one(r"^  toc\s*=.*$", f"  toc = {str(prop_checkbox(props, 'ShowTOC')).lower()}")
