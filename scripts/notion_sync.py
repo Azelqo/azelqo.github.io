@@ -9,13 +9,14 @@ import re
 import sys
 import urllib.error
 import urllib.request
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 API = "https://api.notion.com/v1"
 TOKEN = os.environ["NOTION_TOKEN"]
 DATA_SOURCE_ID = os.environ["NOTION_DATA_SOURCE_ID"]
 VERSION = os.getenv("NOTION_API_VERSION", "2025-09-03")
-OUT = Path("content/notion")
+OUT = Path("content/posts/notion")
 HEADERS = {"Authorization": f"Bearer {TOKEN}", "Notion-Version": VERSION, "Content-Type": "application/json"}
 
 def request(method: str, path: str, payload: dict | None = None) -> dict:
@@ -219,7 +220,8 @@ def main() -> None:
         filename = f"{slug}.md"
         keep.add(filename)
         # Use Notion page last_edited_time so every content or property edit updates the displayed article date.
-        date_value = page.get("last_edited_time") or page.get("created_time") or dt.datetime.now(dt.timezone.utc).isoformat()
+        edited_at = page.get("last_edited_time") or page.get("created_time") or dt.datetime.now(dt.timezone.utc).isoformat()
+        date_value = dt.datetime.fromisoformat(edited_at.replace("Z", "+00:00")).astimezone(ZoneInfo("Asia/Tokyo")).isoformat(timespec="seconds")
         description = prop_text(props, "記事の概要").strip()
         tags = prop_multi(props, "タグ")
         categories = prop_multi(props, "カテゴリー")
