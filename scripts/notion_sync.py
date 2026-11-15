@@ -155,7 +155,7 @@ def sync_sidebar_avatar(props: dict) -> str | None:
     Existing files are removed only after a replacement has been fully validated.
     """
     files = (props.get("サイドバー画像", {}).get("files") or [])
-    image_dir = Path("static/img")
+    image_dir = Path("assets/img")
     image_dir.mkdir(parents=True, exist_ok=True)
 
     if not files:
