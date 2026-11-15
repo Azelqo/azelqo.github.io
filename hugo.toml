@@ -3,6 +3,7 @@ locale = "ja-JP"
 timeZone = "Asia/Tokyo"
 defaultContentLanguage = "ja"
 title = "Azelqoの備忘録"
+description = "Azelqoの備忘録。日々のこと、考えたこと、覚えておきたいことを記録する個人ブログ。"
 enableRobotsTXT = true
 [pagination]
   pagerSize = 5
@@ -31,7 +32,7 @@ enableRobotsTXT = true
 [params.sidebar.avatar]
   enabled = true
   local = true
-  src = "img/avatar.jpg"
+  src = "img/notion-avatar-bdf98b25c7f9.jpg"
 
 [params.article]
   math = false
