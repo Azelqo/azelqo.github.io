@@ -3,9 +3,9 @@
 
 Required environment:
   NOTION_TOKEN
-  NOTION_DATABASE_ID
+  NOTION_DATA_SOURCE_ID
 Optional:
-  NOTION_API_VERSION (defaults to 2022-06-28)
+  NOTION_API_VERSION (defaults to 2025-09-03)
 """
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ from pathlib import Path
 
 API = "https://api.notion.com/v1"
 TOKEN = os.environ["NOTION_TOKEN"]
-DATABASE_ID = os.environ["NOTION_DATABASE_ID"]
-VERSION = os.getenv("NOTION_API_VERSION", "2022-06-28")
+DATA_SOURCE_ID = os.environ["NOTION_DATA_SOURCE_ID"]
+VERSION = os.getenv("NOTION_API_VERSION", "2025-09-03")
 OUT = Path("content/notion")
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}",
@@ -164,7 +164,7 @@ def slugify(value: str) -> str:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    pages = list(paginated(f"/databases/{DATABASE_ID}/query", {"page_size": 100}))
+    pages = list(paginated(f"/data_sources/{DATA_SOURCE_ID}/query", {"page_size": 100}))
     keep: set[str] = set()
     published = 0
 
