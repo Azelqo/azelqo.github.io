@@ -246,7 +246,19 @@ def apply_site_settings(props: dict) -> None:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    pages = list(paginated(f"/data_sources/{DATA_SOURCE_ID}/query", {"page_size": 100}))
+    # Notion's data-source query endpoint has intermittently returned
+    # invalid_request_url for valid IDs. The Search API is stable; retrieve
+    # accessible pages and keep only rows whose parent is this data source.
+    discovered = list(paginated("/search", {
+        "page_size": 100,
+        "filter": {"property": "object", "value": "page"},
+    }))
+    pages = [
+        page for page in discovered
+        if (page.get("parent") or {}).get("data_source_id") == DATA_SOURCE_ID
+        or (page.get("parent") or {}).get("database_id") == DATA_SOURCE_ID
+    ]
+    print(f"Found {len(pages)} page(s) in the Azelqo Notion data source.")
     keep: set[str] = set()
     published = 0
     settings = None
