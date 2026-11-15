@@ -1,7 +1,7 @@
 baseURL = "https://azelqo.github.io/"
 locale = "ja-JP"
 defaultContentLanguage = "ja"
-title = "Azelqo"
+title = "Azelqoの備忘録"
 enableRobotsTXT = true
 [pagination]
   pagerSize = 5
@@ -24,7 +24,7 @@ enableRobotsTXT = true
 
 [params.sidebar]
   emoji = "🖥️"
-  subtitle = "日々のこと、考えたこと、好きなもの。"
+  subtitle = "日々のこと、考えたこと、覚えておきたいこと。"
 
 [params.sidebar.avatar]
   enabled = true
