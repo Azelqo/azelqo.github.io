@@ -30,6 +30,9 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install image conversion support
+        run: python -m pip install --disable-pip-version-check pillow pillow-heif
+
       - name: Sync published Notion pages
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
