@@ -2,6 +2,8 @@
 """Sync published Notion database pages and site settings to Hugo."""
 from __future__ import annotations
 import datetime as dt
+import hashlib
+import io
 import json
 import mimetypes
 import os
@@ -11,6 +13,10 @@ import urllib.error
 import urllib.request
 from zoneinfo import ZoneInfo
 from pathlib import Path
+from PIL import Image
+import pillow_heif
+
+pillow_heif.register_heif_opener()
 
 API = "https://api.notion.com/v1"
 TOKEN = os.environ["NOTION_TOKEN"]
@@ -131,10 +137,20 @@ def slugify(value: str) -> str:
     return value.strip("-") or "note"
 
 def sync_sidebar_avatar(props: dict) -> str | None:
+    """Download, validate and normalize the Notion sidebar image.
+
+    HEIC/HEIF uploads (common on iPhones) are converted to JPEG. A content hash
+    in the filename prevents stale browser/CDN caches from showing the old icon.
+    Existing files are removed only after a replacement has been fully validated.
+    """
     files = (props.get("サイドバー画像", {}).get("files") or [])
+    image_dir = Path("static/img")
+    image_dir.mkdir(parents=True, exist_ok=True)
+
     if not files:
-        for old in Path("static/img").glob("notion-avatar.*"):
-            old.unlink()
+        for old in image_dir.glob("notion-avatar-*"):
+            if old.is_file():
+                old.unlink()
         return None
 
     item = files[0]
@@ -147,25 +163,55 @@ def sync_sidebar_avatar(props: dict) -> str | None:
     with urllib.request.urlopen(request_obj, timeout=30) as response:
         data = response.read(8 * 1024 * 1024 + 1)
         content_type = response.headers.get_content_type().lower()
-    if len(data) > 8 * 1024 * 1024:
-        raise RuntimeError("Sidebar avatar must be 8 MB or smaller")
 
-    signatures = {
-        "image/jpeg": (".jpg", data.startswith(bytes.fromhex("ffd8ff"))),
-        "image/png": (".png", data.startswith(bytes.fromhex("89504e470d0a1a0a"))),
-        "image/webp": (".webp", len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP"),
-        "image/gif": (".gif", data.startswith((b"GIF87a", b"GIF89a"))),
-    }
-    if content_type not in signatures or not signatures[content_type][1]:
-        raise RuntimeError("Sidebar avatar must be a valid JPEG, PNG, WebP, or GIF image")
+    if not data or len(data) > 8 * 1024 * 1024:
+        raise RuntimeError("Sidebar avatar must be non-empty and 8 MB or smaller")
 
-    extension = signatures[content_type][0]
-    image_dir = Path("static/img")
-    image_dir.mkdir(parents=True, exist_ok=True)
-    for old in image_dir.glob("notion-avatar.*"):
-        old.unlink()
-    (image_dir / f"notion-avatar{extension}").write_bytes(data)
-    return f"img/notion-avatar{extension}"
+    # Detect the real file format from its bytes, not only the HTTP Content-Type.
+    heif_brands = (b"heic", b"heix", b"hevc", b"hevx", b"heim", b"heis", b"hevm", b"hevs")
+    is_heif = len(data) >= 12 and data[4:8] == b"ftyp" and data[8:12] in heif_brands
+    signatures = [
+        (".jpg", data.startswith(bytes.fromhex("ffd8ff"))),
+        (".png", data.startswith(bytes.fromhex("89504e470d0a1a0a"))),
+        (".webp", len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP"),
+        (".gif", data.startswith((b"GIF87a", b"GIF89a"))),
+    ]
+    detected = next((ext for ext, valid in signatures if valid), None)
+
+    if is_heif:
+        try:
+            with Image.open(io.BytesIO(data)) as image:
+                image.load()
+                normalized = io.BytesIO()
+                image.convert("RGB").save(normalized, format="JPEG", quality=92, optimize=True)
+                data = normalized.getvalue()
+                extension = ".jpg"
+        except Exception as exc:
+            raise RuntimeError(f"Could not decode/convert the HEIC/HEIF sidebar image: {exc}") from exc
+    elif detected:
+        try:
+            with Image.open(io.BytesIO(data)) as image:
+                image.verify()
+        except Exception as exc:
+            raise RuntimeError(f"Sidebar image is damaged or invalid: {exc}") from exc
+        extension = detected
+    else:
+        raise RuntimeError(
+            "Unsupported sidebar image. Use JPEG, PNG, WebP, GIF, or HEIC/HEIF "
+            f"(received Content-Type: {content_type or 'unknown'})."
+        )
+
+    digest = hashlib.sha256(data).hexdigest()[:12]
+    target = image_dir / f"notion-avatar-{digest}{extension}"
+    temporary = target.with_suffix(target.suffix + ".tmp")
+    temporary.write_bytes(data)
+    temporary.replace(target)
+
+    # Keep the current image until the new one is safely written.
+    for old in image_dir.glob("notion-avatar-*"):
+        if old.is_file() and old != target and not old.name.endswith(".tmp"):
+            old.unlink()
+    return f"img/{target.name}"
 
 
 def apply_site_settings(props: dict) -> None:
