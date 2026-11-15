@@ -150,7 +150,7 @@ def apply_site_settings(props: dict) -> None:
     replace_one(r"^  default\s*=.*$", f"  default = {ts(prop_select(props, 'DefaultColorScheme') or 'auto')}")
     replace_one(r"^  toc\s*=.*$", f"  toc = {str(prop_checkbox(props, 'ShowTOC')).lower()}")
     replace_one(r"^  readingTime\s*=.*$", f"  readingTime = {str(prop_checkbox(props, 'ShowReadingTime')).lower()}")
-    replace_one(r"^  enabled\s*=.*$", f"  enabled = {str(prop_checkbox(props, 'ShowComments')).lower()}")
+    replace_one(r"(?<=\\[params\\.comments\\]\\n)  enabled\\s*=.*$", f"  enabled = {str(prop_checkbox(props, 'ShowComments')).lower()}")
     path.write_text(config, encoding="utf-8")
     print("Applied Notion site settings to hugo.toml.")
 
