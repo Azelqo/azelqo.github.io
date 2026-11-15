@@ -11,6 +11,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.parse
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from PIL import Image
@@ -42,6 +43,16 @@ def paginated(path: str, payload: dict | None = None):
         if not result.get("has_more"):
             break
         body["start_cursor"] = result["next_cursor"]
+
+def paginated_get(path: str):
+    params = {"page_size": 100}
+    while True:
+        query = urllib.parse.urlencode(params)
+        result = request("GET", f"{path}?{query}")
+        yield from result.get("results", [])
+        if not result.get("has_more"):
+            break
+        params["start_cursor"] = result["next_cursor"]
 
 def plain(rich_text: list[dict]) -> str:
     return "".join(item.get("plain_text", "") for item in rich_text or [])
@@ -117,12 +128,12 @@ def block_text(block: dict) -> str:
 
 def get_page_markdown(page_id: str) -> str:
     chunks = []
-    for block in paginated(f"/blocks/{page_id}/children", {"page_size": 100}):
+    for block in paginated_get(f"/blocks/{page_id}/children"):
         value = block_text(block)
         if value: chunks.append(value)
         if block.get("has_children"):
             nested = []
-            for child in paginated(f"/blocks/{block['id']}/children", {"page_size": 100}):
+            for child in paginated_get(f"/blocks/{block['id']}/children"):
                 rendered = block_text(child)
                 if rendered: nested.append("  " + rendered.replace("\n", "\n  "))
             chunks.extend(nested)
