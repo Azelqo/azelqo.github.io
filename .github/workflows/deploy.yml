@@ -32,6 +32,16 @@ jobs:
           hugo-version: "latest"
           extended: true
 
+      - name: Install Dart Sass for Hugo Stack
+        env:
+          DART_SASS_VERSION: "1.108.2"
+        run: |
+          mkdir -p "$HOME/.local"
+          curl -fsSL "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" -o "$RUNNER_TEMP/dart-sass.tar.gz"
+          tar -C "$HOME/.local" -xf "$RUNNER_TEMP/dart-sass.tar.gz"
+          echo "$HOME/.local/dart-sass" >> "$GITHUB_PATH"
+          "$HOME/.local/dart-sass/sass" --embedded --version
+
       - name: Resolve Hugo theme module
         run: hugo mod get
 
