@@ -130,7 +130,7 @@ def slugify(value: str) -> str:
     return value.strip("-") or "note"
 
 def sync_sidebar_avatar(props: dict) -> str | None:
-    files = (props.get("SidebarAvatar", {}).get("files") or [])
+    files = (props.get("サイドバー画像", {}).get("files") or [])
     if not files:
         for old in Path("static/img").glob("notion-avatar.*"):
             old.unlink()
@@ -140,7 +140,7 @@ def sync_sidebar_avatar(props: dict) -> str | None:
     source = item.get("file") or item.get("external") or {}
     url = source.get("url")
     if not url:
-        raise RuntimeError("SidebarAvatar is set but has no downloadable URL")
+        raise RuntimeError("サイドバー画像 is set but has no downloadable URL")
 
     request_obj = urllib.request.Request(url, headers={"User-Agent": "Azelqo-Notion-Sync/1.0"})
     with urllib.request.urlopen(request_obj, timeout=30) as response:
@@ -178,22 +178,22 @@ def apply_site_settings(props: dict) -> None:
     def ts(value: str) -> str:
         return json.dumps(value, ensure_ascii=False)
 
-    replace_one(r"^title\s*=.*$", f"title = {ts(prop_text(props, 'SiteTitle') or 'Azelqoの備忘録')}")
-    desc = ts(prop_text(props, "SiteDescription"))
+    replace_one(r"^title\s*=.*$", f"title = {ts(prop_text(props, 'サイト名') or 'Azelqoの備忘録')}")
+    desc = ts(prop_text(props, "サイト説明"))
     if re.search(r"^description\s*=.*$", config, flags=re.MULTILINE):
         replace_one(r"^description\s*=.*$", f"description = {desc}")
     else:
         config = re.sub(r"^(title\s*=.*)$", lambda m: m.group(1) + "\ndescription = " + desc, config, count=1, flags=re.MULTILINE)
-    replace_one(r"^  emoji\s*=.*$", f"  emoji = {ts(prop_text(props, 'SidebarEmoji') or '🖥️')}")
-    replace_one(r"^  subtitle\s*=.*$", f"  subtitle = {ts(prop_text(props, 'SidebarSubtitle'))}")
+    replace_one(r"^  emoji\s*=.*$", f"  emoji = {ts(prop_text(props, 'サイドバー絵文字') or '🖥️')}")
+    replace_one(r"^  subtitle\s*=.*$", f"  subtitle = {ts(prop_text(props, 'サイドバー説明'))}")
     replace_one(r"(?s)(\[params\.sidebar\.avatar\]\n  enabled\s*=)[^\n]*", lambda m: m.group(1) + f" {str(avatar_src is not None).lower()}")
     replace_one(r"(?s)(\[params\.sidebar\.avatar\].*?\n  local\s*=)[^\n]*", lambda m: m.group(1) + " true")
     replace_one(r"(?s)(\[params\.sidebar\.avatar\].*?\n  src\s*=)[^\n]*", lambda m: m.group(1) + f" {ts(avatar_src or 'img/notion-avatar.png')}")
-    replace_one(r"^  since\s*=.*$", f"  since = {prop_number(props, 'FooterSince', 2026)}")
-    replace_one(r"^  default\s*=.*$", f"  default = {ts(prop_select(props, 'DefaultColorScheme') or 'auto')}")
-    replace_one(r"^  toc\s*=.*$", f"  toc = {str(prop_checkbox(props, 'ShowTOC')).lower()}")
-    replace_one(r"^  readingTime\s*=.*$", f"  readingTime = {str(prop_checkbox(props, 'ShowReadingTime')).lower()}")
-    replace_one(r"(?<=\[params\.comments\]\n)  enabled\s*=.*$", f"  enabled = {str(prop_checkbox(props, 'ShowComments')).lower()}")
+    replace_one(r"^  since\s*=.*$", f"  since = {prop_number(props, 'フッター開始年', 2026)}")
+    replace_one(r"^  default\s*=.*$", f"  default = {ts(prop_select(props, 'テーマ配色') or 'auto')}")
+    replace_one(r"^  toc\s*=.*$", f"  toc = {str(prop_checkbox(props, '目次を表示')).lower()}")
+    replace_one(r"^  readingTime\s*=.*$", f"  readingTime = {str(prop_checkbox(props, '読了時間を表示')).lower()}")
+    replace_one(r"(?<=\[params\.comments\]\n)  enabled\s*=.*$", f"  enabled = {str(prop_checkbox(props, 'コメントを表示')).lower()}")
     path.write_text(config, encoding="utf-8")
     print("Applied Notion site settings to hugo.toml.")
 
@@ -205,25 +205,25 @@ def main() -> None:
     settings = None
     for page in pages:
         props = page.get("properties", {})
-        status = prop_select(props, "Status")
+        status = prop_select(props, "公開状態＊")
         if status == "設定":
             settings = props
             continue
         if status != "公開": continue
-        title = prop_text(props, "Title", "title").strip()
+        title = prop_text(props, "記事タイトル＊", "title").strip()
         if not title:
-            print(f"Skip page {page['id']}: Title is empty")
+            print(f"Skip page {page['id']}: 記事タイトル＊ is empty")
             continue
-        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = prop_text(props, "URLスラッグ").strip() or slugify(title)
         slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
         filename = f"{slug}.md"
         keep.add(filename)
-        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        date_value = (props.get("投稿日", {}).get("date") or {}).get("start")
         if not date_value: date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
         if len(date_value) == 10: date_value += "T09:00:00+09:00"
-        description = prop_text(props, "Description").strip()
-        tags = prop_multi(props, "Tags")
-        categories = prop_multi(props, "Categories")
+        description = prop_text(props, "記事の概要").strip()
+        tags = prop_multi(props, "タグ")
+        categories = prop_multi(props, "カテゴリー")
         body = get_page_markdown(page["id"])
         front = [
             "---", f"title: {yaml_string(title)}", f"description: {yaml_string(description)}",
