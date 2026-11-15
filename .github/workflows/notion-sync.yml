@@ -41,10 +41,10 @@ jobs:
 
       - name: Commit synced posts
         run: |
-          if [[ -n "$(git status --porcelain content/posts/notion hugo.toml static/img)" ]]; then
+          if [[ -n "$(git status --porcelain content/posts/notion hugo.toml static/img assets/img)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add content/posts/notion hugo.toml static/img
+            git add content/posts/notion hugo.toml static/img assets/img
             git commit -m "Sync published Notion notes"
             git push
           else
