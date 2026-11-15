@@ -148,7 +148,7 @@ def sync_sidebar_avatar(props: dict) -> str | None:
     image_dir.mkdir(parents=True, exist_ok=True)
 
     if not files:
-        for old in image_dir.glob("notion-avatar-*"):
+        for old in image_dir.glob("notion-avatar*"):
             if old.is_file():
                 old.unlink()
         return None
@@ -208,7 +208,7 @@ def sync_sidebar_avatar(props: dict) -> str | None:
     temporary.replace(target)
 
     # Keep the current image until the new one is safely written.
-    for old in image_dir.glob("notion-avatar-*"):
+    for old in image_dir.glob("notion-avatar*"):
         if old.is_file() and old != target and not old.name.endswith(".tmp"):
             old.unlink()
     return f"img/{target.name}"
