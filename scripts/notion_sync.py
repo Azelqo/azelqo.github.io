@@ -70,6 +70,15 @@ def prop_multi(props: dict, name: str) -> list[str]:
     return [x.get("name", "") for x in props.get(name, {}).get("multi_select", []) if x.get("name")]
 
 
+def prop_checkbox(props: dict, name: str) -> bool:
+    return bool(props.get(name, {}).get("checkbox", False))
+
+
+def prop_number(props: dict, name: str, default: int) -> int:
+    value = props.get(name, {}).get("number")
+    return int(value) if value is not None else default
+
+
 def rich_to_md(items: list[dict]) -> str:
     out = []
     for item in items or []:
@@ -162,15 +171,595 @@ def slugify(value: str) -> str:
     return value.strip("-") or "note"
 
 
+def apply_site_settings(props: dict) -> None:
+    config_path = Path("hugo.toml")
+    config = config_path.read_text(encoding="utf-8")
+
+    def set_line(pattern: str, replacement: str) -> None:
+        nonlocal config
+        config, count = re.subn(pattern, lambda _: replacement, config, count=1, flags=re.MULTILINE)
+        if count != 1:
+            raise RuntimeError(f"Could not update Hugo setting: {pattern}")
+
+    def toml_string(value: str) -> str:
+        return json.dumps(value, ensure_ascii=False)
+
+    set_line(r'^title\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    if site_settings is not None:
+        apply_site_settings(site_settings)
+    else:
+        print("No Notion site settings row found; Hugo settings left unchanged.")
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'title = {toml_string(prop_text(props, "SiteTitle") or "Azelqoの備忘録")}')
+    description = toml_string(prop_text(props, "SiteDescription"))
+    if re.search(r'^description\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, config, flags=re.MULTILINE):
+        set_line(r'^description\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'description = {description}')
+    else:
+        config = re.sub(r'^(title\\s*=.*)        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, r'\\1\\ndescription = ' + description, config, count=1, flags=re.MULTILINE)
+
+    set_line(r'^  emoji\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  emoji = {toml_string(prop_text(props, "SidebarEmoji") or "🖥️")}')
+    set_line(r'^  subtitle\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  subtitle = {toml_string(prop_text(props, "SidebarSubtitle"))}')
+    set_line(r'^  since\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  since = {prop_number(props, "FooterSince", 2026)}')
+    set_line(r'^  default\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  default = {toml_string(prop_select(props, "DefaultColorScheme") or "auto")}')
+    set_line(r'^  toc\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  toc = {str(prop_checkbox(props, "ShowTOC")).lower()}')
+    set_line(r'^  readingTime\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  readingTime = {str(prop_checkbox(props, "ShowReadingTime")).lower()}')
+    set_line(r'^  enabled\\s*=.*        title = prop_text(props, "Title", "title").strip()
+        if not title:
+            print(f"Skip page {page['id']}: Title is empty")
+            continue
+
+        slug = prop_text(props, "Slug").strip() or slugify(title)
+        slug = re.sub(r"[^a-zA-Z0-9ぁ-んァ-ン一-龥_-]+", "-", slug).strip("-")
+        filename = f"{slug}.md"
+        keep.add(filename)
+
+        date_value = (props.get("Date", {}).get("date") or {}).get("start")
+        if not date_value:
+            date_value = page.get("created_time", dt.datetime.now(dt.timezone.utc).isoformat())
+        if len(date_value) == 10:
+            date_value += "T09:00:00+09:00"
+        description = prop_text(props, "Description").strip()
+        tags = prop_multi(props, "Tags")
+        categories = prop_multi(props, "Categories")
+        body = get_page_markdown(page["id"])
+        front = [
+            "---",
+            f"title: {yaml_string(title)}",
+            f"description: {yaml_string(description)}",
+            f"date: {yaml_string(date_value)}",
+            f"lastmod: {yaml_string(dt.datetime.now(dt.timezone.utc).isoformat())}",
+            'author: "Azelqo"',
+            "draft: false",
+            "categories:",
+        ]
+        front.extend([f"  - {yaml_string(x)}" for x in categories] or ["  - \"メモ\""])
+        front.append("tags:")
+        front.extend([f"  - {yaml_string(x)}" for x in tags])
+        content = "\n".join(front) + "\n---\n\n" + body + "\n"
+        (OUT / filename).write_text(content, encoding="utf-8")
+        published += 1
+
+    # Only remove Markdown files in this integration's dedicated directory.
+    for existing in OUT.glob("*.md"):
+        if existing.name not in keep:
+            existing.unlink()
+    print(f"Synced {published} published Notion page(s) into {OUT}.")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(f"Notion sync failed: {exc}", file=sys.stderr)
+        sys.exit(1)
+, f'  enabled = {str(prop_checkbox(props, "ShowComments")).lower()}')
+    config_path.write_text(config, encoding="utf-8")
+    print("Applied Notion site settings to hugo.toml.")
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     pages = list(paginated(f"/data_sources/{DATA_SOURCE_ID}/query", {"page_size": 100}))
     keep: set[str] = set()
     published = 0
+    site_settings = None
 
     for page in pages:
         props = page.get("properties", {})
-        if prop_select(props, "Status") != "公開":
+        status = prop_select(props, "Status")
+        if status == "設定":
+            site_settings = props
+            continue
+        if status != "公開":
             continue
         title = prop_text(props, "Title", "title").strip()
         if not title:
