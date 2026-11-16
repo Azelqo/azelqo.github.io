@@ -27,7 +27,7 @@ enableRobotsTXT = true
 
 [params.sidebar]
   emoji = "🖥️"
-  subtitle = "日々のこと、考えたこと、覚えておきたいこと。"
+  subtitle = "Azelqoの備忘録。日々のこと、考えたこと、覚えておきたいこと。"
 
 [params.sidebar.avatar]
   enabled = true
