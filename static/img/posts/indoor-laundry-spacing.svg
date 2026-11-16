@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">室内干しの間隔をあける</title><desc id="desc">洗濯物の間にすき間を作り、風が通るように並べる例。</desc>
+<rect width="1200" height="675" rx="34" fill="#f5f3ed"/>
+<text x="72" y="92" fill="#263c3a" font-size="40" font-weight="700" font-family="sans-serif">洗濯物の間に、すき間をつくる</text>
+<text x="74" y="135" fill="#647873" font-size="21" font-family="sans-serif">重なりを減らし、空気が通る配置に</text>
+<rect x="90" y="210" width="480" height="330" rx="24" fill="#f1e3df"/>
+<rect x="630" y="210" width="480" height="330" rx="24" fill="#e1eee9"/>
+<g font-family="sans-serif" text-anchor="middle">
+<text x="330" y="260" fill="#8c4c48" font-size="26" font-weight="700">詰めすぎ</text>
+<text x="870" y="260" fill="#35776c" font-size="26" font-weight="700">間隔をあける</text>
+</g>
+<g fill="#d99a90" stroke="#a96860" stroke-width="3">
+<path d="M190 310 V350 L155 370 V475 Q190 495 225 475 V370 L190 350Z"/>
+<path d="M265 310 V350 L230 370 V475 Q265 495 300 475 V370 L265 350Z"/>
+<path d="M340 310 V350 L305 370 V475 Q340 495 375 475 V370 L340 350Z"/>
+<path d="M415 310 V350 L380 370 V475 Q415 495 450 475 V370 L415 350Z"/>
+</g>
+<g fill="#83b7a8" stroke="#4f8b7d" stroke-width="3">
+<path d="M740 310 V350 L705 370 V475 Q740 495 775 475 V370 L740 350Z"/>
+<path d="M900 310 V350 L865 370 V475 Q900 495 935 475 V370 L900 350Z"/>
+<path d="M1060 310 V350 L1025 370 V475 Q1060 495 1095 475 V370 L1060 350Z"/>
+</g>
+<g stroke="#3d9c91" stroke-width="5" stroke-linecap="round" fill="none">
+<path d="M650 505 H1080"/><path d="M1060 488 l20 17 -20 17"/>
+</g>
+<text x="330" y="515" fill="#8c4c48" font-size="18" text-anchor="middle" font-family="sans-serif">布どうしが重なりやすい</text>
+<text x="870" y="515" fill="#35776c" font-size="18" text-anchor="middle" font-family="sans-serif">風が通る余白を確保</text>
+<text x="72" y="625" fill="#647873" font-size="18" font-family="sans-serif">部屋の広さや衣類の量に合わせて、無理のない間隔に調整します。</text>
+</svg>

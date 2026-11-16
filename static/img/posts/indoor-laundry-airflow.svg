@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">部屋干しの風の通り道</title><desc id="desc">洗濯物の間隔をあけ、下から風を送って空気が通る道をつくる室内干しの図。</desc>
+<rect width="1200" height="675" rx="34" fill="#e9f0ee"/>
+<circle cx="1030" cy="110" r="180" fill="#d4e1dd"/>
+<text x="72" y="96" fill="#263c3a" font-size="42" font-weight="700" font-family="sans-serif">部屋干しに、風の通り道を</text>
+<text x="74" y="140" fill="#5e7772" font-size="22" font-family="sans-serif">洗濯物を詰めず、空気が動く配置に</text>
+<path d="M190 230 H1010" stroke="#6f8c85" stroke-width="12" stroke-linecap="round"/>
+<g fill="#f9fbf8" stroke="#6f8c85" stroke-width="4">
+<path d="M280 230 V270 L245 290 V430 Q280 455 315 430 V290 L280 270Z"/>
+<path d="M470 230 V270 L435 290 V430 Q470 455 505 430 V290 L470 270Z"/>
+<path d="M660 230 V270 L625 290 V430 Q660 455 695 430 V290 L660 270Z"/>
+<path d="M850 230 V270 L815 290 V430 Q850 455 885 430 V290 L850 270Z"/>
+</g>
+<g fill="none" stroke="#3d9c91" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M150 500 C280 460 360 470 420 500"/><path d="M400 480 l20 20 -25 14"/>
+<path d="M430 540 C570 500 670 510 740 540"/><path d="M720 520 l20 20 -25 14"/>
+<path d="M750 480 C880 440 960 450 1030 480"/><path d="M1010 460 l20 20 -25 14"/>
+</g>
+<rect x="500" y="555" width="200" height="48" rx="24" fill="#3d9c91"/>
+<circle cx="560" cy="579" r="13" fill="#e9f0ee"/><path d="M560 555 Q590 579 560 603 M560 555 Q530 579 560 603" fill="none" stroke="#e9f0ee" stroke-width="3"/>
+<text x="625" y="587" fill="#ffffff" font-size="19" text-anchor="middle" font-family="sans-serif">送風する</text>
+<text x="72" y="635" fill="#5e7772" font-size="17" font-family="sans-serif">Azelqo · オリジナル図版</text>
+</svg>
