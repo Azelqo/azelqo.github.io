@@ -294,6 +294,14 @@ def main() -> None:
         edited_at = page.get("last_edited_time") or page.get("created_time") or dt.datetime.now(dt.timezone.utc).isoformat()
         date_value = dt.datetime.fromisoformat(edited_at.replace("Z", "+00:00")).astimezone(ZoneInfo("Asia/Tokyo")).isoformat(timespec="seconds")
         description = prop_text(props, "記事の概要").strip()
+        image_url = prop_text(props, "アイキャッチ画像URL").strip()
+        image_alt = prop_text(props, "アイキャッチ画像alt").strip()
+        if image_url:
+            parsed_image = urllib.parse.urlparse(image_url)
+            if parsed_image.scheme != "https" or parsed_image.netloc not in {"azelqo.github.io", "images.pexels.com"}:
+                raise RuntimeError(f"Unsupported アイキャッチ画像URL: {image_url}")
+            if not parsed_image.path.lower().endswith((".svg", ".png", ".jpg", ".jpeg", ".webp")):
+                raise RuntimeError(f"Unsupported アイキャッチ画像URL extension: {image_url}")
         tags = prop_multi(props, "タグ")
         categories = prop_multi(props, "カテゴリー")
         print(f"Reading Notion article: {title} ({page['id']})")
@@ -304,6 +312,10 @@ def main() -> None:
             'author: "Azelqo"', "draft: false", "categories:",
         ]
         front.extend([f"  - {yaml_string(x)}" for x in categories] or ['  - "メモ"'])
+        if image_url:
+            front.append(f"image: {yaml_string(image_url)}")
+        if image_alt:
+            front.append(f"imageAlt: {yaml_string(image_alt)}")
         front.append("tags:")
         front.extend([f"  - {yaml_string(x)}" for x in tags])
         (OUT / filename).write_text("\n".join(front) + "\n---\n\n" + body + "\n", encoding="utf-8")
