@@ -1,34 +1,59 @@
 # Azelqo
 
-日々の学びや考えたことを、自分のペースで記録する匿名の個人ブログです。
+Azelqo is a personal notebook for things worth remembering: what I learn, investigate, test, and think about.
 
-## サイト
+## Public site
 
-https://azelqo.github.io/
+- Main blog (Hexo + Materialis): https://azelqo.github.io/
+- Previous Hugo blog, preserved as an archive: https://azelqo.github.io/original/
 
-## 技術構成
+## Stack
 
-- Hugo
-- Hugo Theme Stack
-- Markdown
-- GitHub Pages
+- **Hexo 8** — main static blog generator
+- **Materialis** — Material Design 3 Expressive theme by [Can1425](https://github.com/Can1425/Hexo-Theme-Materialis)
+- **hexo-admin 2.3.0** — local-only writing dashboard
+- **Hugo + Stack** — preserved legacy site under `/original/`
+- GitHub Pages + GitHub Actions
 
-## ローカルプレビュー
+## Write and edit posts
 
-Hugo をインストールしたうえで、リポジトリのルートから実行します。
+The main blog's Markdown files are stored in `source/_posts/`.
+
+### Open the admin dashboard
+
+From the repository root:
 
 ```bash
-hugo server -D
+npm run admin
 ```
 
-## 記事の管理
+Open `http://localhost:4000/admin/` in your browser.
 
-記事は Hugo のコンテンツディレクトリで Markdown として管理します。公開日時・更新日時・下書き状態は各記事のフロントマターで設定します。
+The admin environment is intentionally separate: hexo-admin 2.3.0 uses the legacy Hexo 3 API, while the public site is generated with Hexo 8. Both use the same `source/` content directory. The dashboard is local-only and must never be exposed to the public internet.
 
-## 運用方針
+After editing, stop the admin server and run:
 
-- 2026-11-15: Hugo Theme Stack の Sass 依存を満たすため、Pages のビルド前に Dart Sass をセットアップするよう CI を修正。
+```bash
+npm install
+npm run build
+```
 
-- 実体験や確認できた情報を中心に、自然な文章で記録します。
-- 個人を特定できる情報は掲載しません。
-- 外部の画像・資料を使用する場合は、利用条件と出典を確認します。
+The local public preview can be started with:
+
+```bash
+npm run server
+```
+
+## Legacy Hugo archive
+
+The original Hugo source, theme configuration, and posts are retained. The deploy workflow builds Hugo separately into `public/original/`, so the former site remains available at `/original/` without mixing its content into the new Hexo blog.
+
+To preview the old Hugo site locally:
+
+```bash
+hugo server --baseURL http://localhost:1313/original/ --appendPort=false
+```
+
+## Deployment
+
+Every push to `main` builds the Hexo homepage at `/`, builds the retained Hugo site at `/original/`, verifies both outputs, and deploys the combined Pages artifact.
