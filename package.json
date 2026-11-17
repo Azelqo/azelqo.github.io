@@ -9,8 +9,7 @@
     "server": "hexo server",
     "server:admin": "hexo server -p 4000",
     "build": "npm run build:hexo",
-    "admin": "cd admin && npm install && npx hexo server -p 4000",
-    "admin:server": "cd admin && npx hexo server -p 4000"
+    "admin": "cd admin && npm install && npm run server"
   },
   "dependencies": {
     "hexo": "8.1.2",
