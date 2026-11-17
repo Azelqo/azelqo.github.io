@@ -21,15 +21,19 @@ The main blog's Markdown files are stored in `source/_posts/`.
 
 ### Open the admin dashboard
 
-From the repository root:
+The original hexo-admin 2.3.0 is tied to the legacy Hexo 3 API and Node.js versions below 8. It is isolated in `admin/`; the public blog itself is built with modern Hexo 8.
 
-```bash
+On Windows with nvm-windows, use a separate legacy Node runtime:
+
+```powershell
+nvm install 7.10.1
+nvm use 7.10.1
 npm run admin
 ```
 
-Open `http://localhost:4000/admin/` in your browser.
+Then open `http://localhost:4000/admin/` in your browser. The admin instance and public Hexo 8 generator share the same `source/` directory.
 
-The admin environment is intentionally separate: hexo-admin 2.3.0 uses the legacy Hexo 3 API, while the public site is generated with Hexo 8. Both use the same `source/` content directory. The dashboard is local-only and must never be exposed to the public internet.
+**Security note:** Node.js 7 is end-of-life. Use this only as a local editor on your own computer, never expose port 4000 to the internet, and switch back to a supported Node.js version before running the public Hexo 8 build. If you do not want to use an obsolete Node runtime, hexo-admin 2.3.0 is not a suitable editor; a modern CMS would be needed instead.
 
 After editing, stop the admin server and run:
 
