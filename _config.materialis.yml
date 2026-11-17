@@ -1,0 +1,80 @@
+# Azelqo theme settings — Material Design 3 Expressive
+comment:
+  service: ''
+comment_count:
+  enable: false
+
+sidebar:
+  name: Azelqo
+  slogen: 日々の学びや考えたことを記録する。
+  avatar: ''
+
+rss: /atom.xml
+post_views:
+  enable: false
+site_runtime:
+  enable: false
+post_reactions:
+  enable: false
+reading_position:
+  enable: false
+announcement:
+  enable: false
+hot_page:
+  enable: false
+pwa:
+  enable: false
+related_posts:
+  enable: true
+  max_count: 3
+
+nav:
+  - name: ホーム
+    icon: home
+    url: /
+  - name: アーカイブ
+    icon: article
+    url: /archives/
+  - name: カテゴリー
+    icon: category
+    url: /categories/
+  - name: タグ
+    icon: tag
+    url: /tags/
+  - name: このブログについて
+    icon: info
+    url: /about/
+
+links:
+  use: 0
+shuoshuo:
+  use: 0
+
+click_effect:
+  enable: false
+font:
+  primary: false
+
+footer:
+  copyright: "© Azelqo"
+  beian:
+    icp: ""
+    ps: ""
+  theme_name: "Materialis"
+
+banner:
+  enable: true
+  cards:
+    - type: intro
+      size: hero
+      tone: primary
+      featured: true
+      eyebrow: "PERSONAL NOTES"
+      icon: auto_awesome
+      title: "Azelqo"
+      subtitle: "日々の学びや考えたこと、覚えておきたいこと。"
+      actions:
+        - text: "記事を読む"
+          icon: article
+          url: "/archives/"
+          variant: filled
