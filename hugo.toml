@@ -1,4 +1,4 @@
-baseURL = "https://azelqo.github.io/"
+baseURL = "https://azelqo.github.io/original/"
 locale = "ja-JP"
 timeZone = "Asia/Tokyo"
 defaultContentLanguage = "ja"
