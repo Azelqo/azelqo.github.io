@@ -8,11 +8,12 @@
     "build:hexo": "hexo generate",
     "server": "hexo server",
     "server:admin": "hexo server -p 4000",
-    "build": "npm run build:hexo"
+    "build": "npm run build:hexo",
+    "admin": "cd admin && npm install && npx hexo server -p 4000",
+    "admin:server": "cd admin && npx hexo server -p 4000"
   },
   "dependencies": {
     "hexo": "8.1.2",
-    "hexo-admin": "2.3.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
@@ -21,6 +22,7 @@
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^7.0.0",
     "hexo-server": "^3.0.0",
-    "hexo-theme-materialis": "2.1.0"
+    "hexo-theme-materialis": "2.1.0",
+    "hexo-generator-sitemap": "^3.0.1"
   }
 }
