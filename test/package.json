@@ -1,0 +1,8 @@
+{
+  "name": "azelqo-nuxt-studio-test",
+  "private": true,
+  "type": "module",
+  "scripts": {"build":"nuxt build","dev":"nuxt dev","preview":"nuxt preview"},
+  "dependencies": {"@nuxt/content":"^3.8.0","nuxt":"^4.2.0","nuxt-studio":"^1.8.2"},
+  "devDependencies": {"wrangler":"^4.50.0"}
+}
