@@ -1,0 +1,17 @@
+# Local-only Hexo Admin runtime.
+# Content is shared with the main Hexo 8 site in ../source.
+# Run from this directory: npm install && npx hexo server -p 4000
+title: Azelqo Admin
+url: http://localhost:4000
+root: /
+source_dir: ../source
+public_dir: ../admin-public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+permalink: /:year/:month/:day/:title/
+theme: landscape
+new_post_name: :title.md
+default_layout: post
+timezone: Asia/Tokyo
