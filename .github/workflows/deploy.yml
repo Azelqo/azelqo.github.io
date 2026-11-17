@@ -1,4 +1,4 @@
-name: Deploy Hugo site to Pages
+name: Deploy Azelqo (Hexo + Hugo archive)
 
 on:
   push:
@@ -25,6 +25,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Hexo dependencies
+        run: npm install
+
+      - name: Build Hexo + Materialis
+        run: |
+          npx hexo clean
+          npx hexo generate
+          test -s public-hexo/index.html
+
+      - name: Prepare combined Pages directory
+        run: |
+          mkdir -p public
+          cp -a public-hexo/. public/
+
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
@@ -49,14 +69,16 @@ jobs:
       - name: Resolve Hugo theme module
         run: hugo mod get
 
-      - name: Build
-        run: hugo --minify --printPathWarnings
+      - name: Build legacy Hugo site under /original/
+        run: hugo --minify --printPathWarnings --destination "$GITHUB_WORKSPACE/public/original"
 
-      - name: Verify generated site
+      - name: Verify both sites
         run: |
           test -s public/index.html
-          test -s public/robots.txt
-          test -s public/sitemap.xml
+          test -s public/original/index.html
+          test -s public/original/sitemap.xml
+          test -s public/original/robots.txt
+          echo "Hexo root and Hugo archive are present."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
