@@ -69,7 +69,7 @@ jobs:
         run: hugo mod get
 
       - name: Build legacy Hugo site under /original/
-        run: hugo --minify --printPathWarnings --destination "$GITHUB_WORKSPACE/public/original"
+        run: hugo --minify --printPathWarnings --baseURL "https://azelqo.github.io/original/" --destination "$GITHUB_WORKSPACE/public/original"
 
       - name: Verify both sites
         run: |
