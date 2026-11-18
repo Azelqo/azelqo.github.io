@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+<title id="title">Webサービスを試す前の確認項目</title>
+<desc id="desc">目的、データの書き出し、料金、プライバシー、対応環境、終了方法の六つを示す図。</desc>
+<rect width="900" height="420" rx="24" fill="#f4f5f7"/>
+<g font-family="sans-serif" text-anchor="middle">
+<g><rect x="38" y="38" width="250" height="145" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="163" y="91" font-size="17" fill="#737b87">01</text><text x="163" y="135" font-size="28" font-weight="700" fill="#20242b">目的</text></g>
+<g><rect x="325" y="38" width="250" height="145" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="450" y="91" font-size="17" fill="#737b87">02</text><text x="450" y="135" font-size="26" font-weight="700" fill="#20242b">データ</text></g>
+<g><rect x="612" y="38" width="250" height="145" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="737" y="91" font-size="17" fill="#737b87">03</text><text x="737" y="135" font-size="28" font-weight="700" fill="#20242b">料金</text></g>
+<g><rect x="38" y="218" width="250" height="145" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="163" y="271" font-size="17" fill="#737b87">04</text><text x="163" y="315" font-size="26" font-weight="700" fill="#20242b">プライバシー</text></g>
+<g><rect x="325" y="218" width="250" height="145" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="450" y="271" font-size="17" fill="#737b87">05</text><text x="450" y="315" font-size="26" font-weight="700" fill="#20242b">対応環境</text></g>
+<g><rect x="612" y="218" width="250" height="145" rx="18" fill="#252a33"/><text x="737" y="271" font-size="17" fill="#c5cbd4">06</text><text x="737" y="315" font-size="26" font-weight="700" fill="#fff">終了方法</text></g>
+</g></svg>
