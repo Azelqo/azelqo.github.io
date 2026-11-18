@@ -50,7 +50,7 @@ npm run server
 
 ## Legacy Hugo archive
 
-The original Hugo source, theme configuration, and posts are retained. The deploy workflow builds Hugo separately into `public/original/`, so the former site remains available at `/original/` without mixing its content into the new Hexo blog.
+The original Hugo source, theme configuration, and posts are retained. The deploy workflow builds Hugo separately into `public/original/`, so the former site remains available at `/original/` without mixing its content into the new Hexo blog. The Hugo configuration keeps the canonical `baseURL = "https://azelqo.github.io/"`; the deploy workflow overrides it to `https://azelqo.github.io/original/` only for the archive build, preserving its existing public URLs.
 
 To preview the old Hugo site locally:
 
@@ -61,3 +61,8 @@ hugo server --baseURL http://localhost:1313/original/ --appendPort=false
 ## Deployment
 
 Every push to `main` builds the Hexo homepage at `/`, builds the retained Hugo site at `/original/`, verifies both outputs, and deploys the combined Pages artifact.
+
+
+## Maintenance note (2026-11-19)
+
+- Restored the Hugo configuration's canonical base URL while explicitly setting the `/original/` base URL in the archive deployment command. This keeps the Hugo Stack archive's deployed links stable and avoids changing the Hexo root site.
