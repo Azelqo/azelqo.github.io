@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="title desc">
+<title id="title">調べ物をメモに残す流れ</title>
+<desc id="desc">問い、一次情報の確認、要点の記録、確認日と次の行動の四段階を矢印でつないだ図。</desc>
+<rect width="1000" height="260" rx="24" fill="#f4f5f7"/>
+<g font-family="sans-serif" text-anchor="middle">
+<g><rect x="28" y="65" width="205" height="125" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="130" y="112" font-size="18" fill="#737b87">STEP 01</text><text x="130" y="151" font-size="28" font-weight="700" fill="#20242b">問い</text></g>
+<path d="M244 127h32m-10 -10 10 10 -10 10" fill="none" stroke="#7b8490" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g><rect x="286" y="65" width="205" height="125" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="388" y="112" font-size="18" fill="#737b87">STEP 02</text><text x="388" y="151" font-size="25" font-weight="700" fill="#20242b">一次情報</text></g>
+<path d="M502 127h32m-10 -10 10 10 -10 10" fill="none" stroke="#7b8490" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g><rect x="544" y="65" width="205" height="125" rx="18" fill="#fff" stroke="#30343b" stroke-width="2"/><text x="646" y="112" font-size="18" fill="#737b87">STEP 03</text><text x="646" y="151" font-size="28" font-weight="700" fill="#20242b">要点</text></g>
+<path d="M760 127h32m-10 -10 10 10 -10 10" fill="none" stroke="#7b8490" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g><rect x="802" y="65" width="170" height="125" rx="18" fill="#252a33"/><text x="887" y="112" font-size="18" fill="#c5cbd4">STEP 04</text><text x="887" y="148" font-size="23" font-weight="700" fill="#fff">次の行動</text></g>
+<text x="500" y="228" font-size="16" fill="#626b77">情報を保存するだけでなく、あとで判断に使える形にする</text>
+</g></svg>
