@@ -255,6 +255,15 @@ def apply_site_settings(props: dict) -> None:
     path.write_text(config, encoding="utf-8")
     print("Applied Notion site settings to hugo.toml.")
 
+def ensure_safe_publish_set(published_count: int, existing_posts: list[Path]) -> None:
+    """Prevent an empty/incomplete Notion result from pruning every published post."""
+    if published_count == 0 and existing_posts:
+        raise RuntimeError(
+            "No published Notion pages were returned while existing posts are present; "
+            "refusing to delete existing posts."
+        )
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # Notion's data-source query endpoint has intermittently returned
@@ -325,7 +334,9 @@ def main() -> None:
         apply_site_settings(settings)
     else:
         print("No Notion site settings row found; Hugo settings left unchanged.")
-    for existing in OUT.glob("*.md"):
+    existing_posts = list(OUT.glob("*.md"))
+    ensure_safe_publish_set(published, existing_posts)
+    for existing in existing_posts:
         if existing.name not in keep: existing.unlink()
     print(f"Synced {published} published Notion page(s) into {OUT}.")
 
